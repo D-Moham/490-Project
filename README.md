@@ -1,2 +1,2 @@
 # 490-Project: TechTravel Itinerary 
-Project Repo for 490
+Project Repo for 490.
