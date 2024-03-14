@@ -1,7 +1,12 @@
 const express = require('express');
+const app = express();
 const ejs = require('ejs');
 const path = require('path');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+const indexRoutes = require('./routes/index');
 
 // configure dotenv
 require('dotenv').config();
@@ -14,33 +19,40 @@ mongoose.connect(databaseUri)
       .then(() => console.log(`Database connected`))
       .catch(err => console.log(`Database connection error: ${err.message}`));
 
-// Express app
-let app = express();
-
 app.use(express.static(__dirname + "/public"));
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: true }));
 
-// Routes
-app.get('/', function(req, res){
-  res.render('home');
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+  secret: "Very secret message",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function(id, done) {
+  User.findById(id)
+    .then(user => {
+      done(null, user);
+    })
+    .catch(err => {
+      done(err, null);
+    });
 });
 
-app.get('/search', function(req, res) {
-  res.render('search');
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  next();
 });
 
-app.get('/itinerary', function(req, res) {
-  res.render('itinerary');
-});
+// Import Routes
+app.use('/', indexRoutes);
 
-app.get('/tracker', function(req, res) {
-  res.render('tracker');
-});
-
-app.get('/profile', function(req, res) {
-  res.render('profile');
-})
-
+// Running the app
 app.listen(3000, function() {
   console.log('App is running on http://localhost:3000/');
 });

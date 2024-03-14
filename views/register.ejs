@@ -1,0 +1,31 @@
+<%- include('./partials/head') %>
+<%- include('./partials/header') %>
+<body>
+	<div class="row">
+        <h2 style="text-align: center">Sign Up</h2>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                </div>
+                
+                <div id="displayName" class="form-group">
+                    <input class="form-control" type="text" name="displayName" placeholder="Display Name">
+                </div>
+
+                <div class="form-group" id="submit">
+                    <button class="btn btn-primary btn-block">Sign Up!</button>
+                </div>
+            </form>
+
+            <div class="login-section">Already have an account? <a href="/login" class="text-info">Log In</a></div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="/stylesheets/register.css">
+</body>
+
+<script src="/scripts/register.js"></script>

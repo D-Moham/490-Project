@@ -8,10 +8,19 @@
       <li><a href="search"><i class="material-icons">search</i></a></li>
     </ul>
     <!-- Right-aligned buttons -->
-    <ul style="padding-right: 2rem;" class="right hide-on-med-and-down">
-      <li><a style="color: black" class="btn white" href="#">Login</a></li>
-      <li><a class="btn black" href="#">Sign Up</a></li>
-    </ul>
+    <% if (isAuthenticated) { %>
+      <!-- Display logout button -->
+      <ul style="padding-right: 2rem;" class="right hide-on-med-and-down">
+        <li><a style="color: black" class="btn white" href="logout">Logout</a></li>
+      </ul>
+    <% } else { %>
+      <!-- Display login/signup buttons -->
+      <ul style="padding-right: 2rem;" class="right hide-on-med-and-down">
+        <li><a style="color: black" class="btn white" href="login">Login</a></li>
+        <li><a class="btn black" href="register">Sign Up</a></li>
+      </ul>
+    <% } %>
+
     <!-- Mobile navbar trigger -->
     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
   </div>
