@@ -1,1 +1,10 @@
 /* HOME Page CSS */
+/* Custom CSS for input field color change */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #808080 !important;
+  box-shadow: 0 1px 0 0 #808080 !important;
+}
+
+.material-icons.active {
+  color: #808080 !important;
+}
