@@ -1,1 +1,7 @@
 /* HOME Page CSS */
+
+body {
+    background-image: url(images/pexels-joyston-judah-933054.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
