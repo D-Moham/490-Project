@@ -6,15 +6,14 @@
     font-style: normal;
   }
 
-  body{
-    background-color: black;
+  body {
+    background-color: rgba(29, 29, 31, 0.86);
     font-family: 'Lato';
     color: white;
   }
 
 /* Custom CSS for the buttons */
-.button{
-    style: center;
+.button {
     border: none;
     color: black;
     background-color: white;
@@ -33,4 +32,4 @@
 .button:hover {
     background-color: #04AA6D; /* Green */
     color: white;
-  }
+}

@@ -12,3 +12,12 @@
 .sign-up-section {
   margin-top: 1rem;
 }
+
+body {
+  color: white;
+  background-color: rgba(29, 29, 31, 0.86);
+}
+
+input {
+  color: white;
+}
