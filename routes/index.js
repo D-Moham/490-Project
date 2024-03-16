@@ -22,7 +22,9 @@ router.get('/tracker', (req, res) => {
 });
 
 router.get('/profile', (req, res) => {
-  res.render('profile');
+  let displayName = req.user?.displayName;
+
+  res.render('profile', {displayName: displayName});
 })
 
 // Register Page
