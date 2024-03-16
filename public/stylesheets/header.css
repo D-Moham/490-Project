@@ -1,8 +1,12 @@
-  /* Transparent grayish background */
-  nav {
-    background-color: rgba(128, 128, 128, 0.9); /* Adjust opacity as needed */
-  }
+/* Transparent grayish background */
+nav {
+  background-color: #808080; /* Adjust opacity as needed */
+}
 
-  .main-content {
-    padding: 4rem;
-  }
+.main-content {
+  padding: 4rem;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
