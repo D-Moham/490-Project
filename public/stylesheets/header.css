@@ -1,6 +1,13 @@
 /* Transparent grayish background */
+@font-face {
+  font-family: 'Lato';
+  src: url('fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
 nav {
-  background-color: #808080; /* Adjust opacity as needed */
+  background-color: rgba(0, 0, 0, 0.25); /* Adjust opacity as needed */
 }
 
 .main-content {
@@ -8,5 +15,5 @@ nav {
 }
 
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Lato';
 }

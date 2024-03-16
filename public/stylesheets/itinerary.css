@@ -1,9 +1,17 @@
 /* ITINERARY Page CSS */
-body {
+@font-face {
+    font-family: 'Lato';
+    src: url('fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  body{
     background-color: black;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+    font-family: 'Lato';
+    color: white;
+  }
+
 
 /* Custom CSS for the buttons */
 .button{
