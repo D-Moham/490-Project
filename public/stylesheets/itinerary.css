@@ -1,1 +1,29 @@
 /* ITINERARY Page CSS */
+body {
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Custom CSS for the buttons */
+.button{
+    style: center;
+    border: none;
+    color: black;
+    background-color: white;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 50px !important;
+    width: 100%;
+    margin: 6px 4px !important;
+    border-radius: 12px!important;
+    align-items: center!important;
+    display: block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #04AA6D; /* Green */
+    color: white;
+  }
