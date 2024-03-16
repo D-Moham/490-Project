@@ -1,1 +1,13 @@
 /* SEARCH Page CSS */
+@font-face {
+    font-family: 'Lato';
+    src: url('fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  body{
+    background-color: black;
+    font-family: 'Lato';
+    color: white;
+  }

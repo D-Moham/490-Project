@@ -28,3 +28,8 @@ body {
 .search-icon {
   color: #8F8F8F;
 }
+
+img{
+    width: 40%;
+    margin-top: 7rem;
+}
