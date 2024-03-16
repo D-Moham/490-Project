@@ -14,7 +14,11 @@ router.get('/search', (req, res) => {
 });
 
 router.get('/itinerary', (req, res) => {
-  res.render('itinerary');
+  if (req.isAuthenticated()) {
+    res.render('itinerary');
+  } else {
+    res.redirect('/register');
+  }
 });
 
 router.get('/tracker', (req, res) => {
