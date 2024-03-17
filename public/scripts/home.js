@@ -100,6 +100,9 @@ let options = {
     "Telluride, Colorado": null,
     "Jackson Hole, Wyoming": null,
     "Lake Placid, New York": null
+  },
+  onAutocomplete: function(val) {
+    window.location.href = '/city?city=' + encodeURIComponent(val);
   }
 };
 
