@@ -16,6 +16,15 @@ router.get('/search', (req, res) => {
 router.get('/itinerary', (req, res) => {
   if (req.isAuthenticated()) {
     res.render('itinerary');
+    router.get('/itinerary/create', (req, res) => {
+      res.render('itinerary-create');
+    })
+    router.get('/itinerary/view', (req, res) => {
+      res.render('itinerary-view');
+    })
+    router.get('/itinerary/edit', (req, res) => {
+      res.render('itinerary-edit');
+    })
   } else {
     res.redirect('/register');
   }
