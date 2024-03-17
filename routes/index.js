@@ -78,4 +78,11 @@ router.get('/logout', userAuth.logout, (req, res) => {
   res.redirect('/');
 })
 
+// Dynamic Page that displays the selected City's Details
+router.get('/city', function(req, res) {
+  const cityName = req.query.city; // Extract the city name from query parameters
+  
+  res.render('city', {cityName: cityName});
+});
+
 module.exports = router;
