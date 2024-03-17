@@ -6,11 +6,11 @@
     font-style: normal;
   }
 
-body {
-  background-color: rgba(29, 29, 31, 0.86);
-  font-family: 'Lato';
-  color: white;
-}
+  body {
+    background-color: rgba(29, 29, 31, 0.86);
+    font-family: 'Lato';
+    color: white;
+  }
 
 /* Custom CSS for the buttons */
 .button {
