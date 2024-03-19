@@ -1,9 +1,20 @@
 // Dynamically update the map according to the city name
 let cityName = document.getElementById('cityData').dataset.cityname;
 cityName = cityName.split(',')[0];
-console.log(cityName);
-const googleSrc = 'https://maps.google.com/maps?q=' + encodeURIComponent(cityName) + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
-document.querySelector('.map').src = googleSrc;
+const maps = 'https://maps.google.com/maps?q=' + encodeURIComponent(cityName) + '&t=&z=13&ie=UTF8&iwloc=&output=embed';
+document.querySelector('.map').src = maps;
+
+// Construct the hotels URL with the city name
+const hotels = 'https://www.google.com/travel/hotels/' + encodeURIComponent(cityName);
+document.querySelector('.hotels').href = hotels;
+
+// Construct the food & drink recommendations
+const foods = 'https://www.yelp.com/search?find_desc=Dinner+And+Drinks&find_loc=' + encodeURIComponent(cityName);
+document.querySelector('.foods').src = foods;
+
+// Construct the attractions recommendations
+const attractions = `https://www.yelp.com/search?find_desc=Attractions&find_loc=${encodeURIComponent(cityName)}`;
+document.querySelector('.attractions').src = attractions;
 
 // Setting up the tabs
 let el = document.querySelector('.tabs');

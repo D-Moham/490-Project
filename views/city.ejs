@@ -4,8 +4,8 @@
 <body>
   <div class="main-content">
     <div id="cityData" data-cityname="<%= cityName %>"></div>
-    <h4><%- cityName %></h4>
-    <a class="waves-effect waves-light btn">Add to your trip</a>
+    <h3><%- cityName %></h3>
+    <a style="color: black;" class="waves-effect waves-dark btn white">Add to your trip</a>
 
     <div style="margin-top: 4rem;" class="row">
       <div class="col s12">
@@ -13,14 +13,14 @@
           <li class="tab col s3 guide-tabs"><a class="active" href="#attractions">Attractions</a></li>
           <li class="tab col s3 guide-tabs"><a href="#food-drink">Food & Drink</a></li>
           <li class="tab col s3 guide-tabs"><a href="#map">Map</a></li>
-          <li class="tab col s3 guide-tabs"><a href="https://www.kayak.com/hotels/Raleigh,North-Carolina,United-States-p55648/2024-02-08/2024-02-13/1adults?sort=rank_a" target="_blank">Hotel Deals <i class="material-icons" style="vertical-align: middle;">launch</i></a></li>
+          <li class="tab col s3 guide-tabs"><a class="hotels" target="_blank">Hotel Deals<i class="material-icons" style="vertical-align: middle;">launch</i></a></li>
         </ul>
       </div>
       <div id="attractions" class="col s12">
-        <p align="center">WORK IN PROGRESS!</p> 
+        <p align="center"><iframe class="attractions" width="1200" height="800" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe></p> 
       </div>
       <div id="food-drink" class="col s12">
-        <p align="center">WORK IN PROGRESS!</p>
+        <p align="center"><iframe class="foods" width="1200" height="800" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
       </div>
       <div id="map">
         <p align="center"><iframe class="map" width="1200" height="800" style="border:0;" allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe></p>
