@@ -24,3 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
   let elems = document.querySelectorAll('.sidenav');
   let instances = M.Sidenav.init(elems);
 });
+
+// Get reference to the iframe and the loader
+const iframe = document.getElementById('attractions-frame');
+const loader = document.getElementById('loader');
+
+// Hide the loader when the iframe is loaded
+iframe.onload = function() {
+  loader.style.display = 'none';
+};
