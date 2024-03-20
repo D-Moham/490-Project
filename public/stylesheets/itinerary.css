@@ -12,6 +12,14 @@
     color: white;
   }
 
+/* Custom CSS for the lists */
+ul {
+  /*list-style-image: url('sqpurple.gif');*/
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 25px !important;
+}
 /* Custom CSS for the buttons */
 .button {
     border: none;
@@ -20,8 +28,7 @@
     padding: 10px 24px;
     text-align: center;
     text-decoration: none;
-    font-size: 50px !important;
-    width: 100%;
+    font-size: 25px !important;
     margin: 6px 4px !important;
     border-radius: 12px!important;
     align-items: center!important;
