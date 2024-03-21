@@ -13,23 +13,6 @@ router.get('/search', (req, res) => {
   res.render('search');
 });
 
-router.get('/itinerary', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render('itinerary');
-    router.get('/itinerary/create', (req, res) => {
-      res.render('itinerary-create');
-    })
-    router.get('/itinerary/view', (req, res) => {
-      res.render('itinerary-view');
-    })
-    router.get('/itinerary/edit', (req, res) => {
-      res.render('itinerary-edit');
-    })
-  } else {
-    res.redirect('/register');
-  }
-});
-
 router.get('/tracker', (req, res) => {
   res.render('tracker');
 });
@@ -83,6 +66,23 @@ router.get('/city', function(req, res) {
   const cityName = req.query.city; // Extract the city name from query parameters
   
   res.render('city', {cityName: cityName});
+});
+
+router.get('/itinerary', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render('itinerary');
+    router.get('/itinerary/create', (req, res) => {
+      res.render('itinerary-create');
+    })
+    router.get('/itinerary/view', (req, res) => {
+      res.render('itinerary-view');
+    })
+    router.get('/itinerary/edit', (req, res) => {
+      res.render('itinerary-edit');
+    })
+  } else {
+    res.redirect('/register');
+  }
 });
 
 module.exports = router;
