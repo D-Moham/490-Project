@@ -132,8 +132,25 @@ router.post('/itinerary/create', async (req, res) => {
   }
 });
 
-router.get('/itinerary/view', userAuth.checkLoggedIn, (req, res) => {
-  res.render('itinerary-view');
+// GET route to view an individual itinerary
+router.get('/itinerary/:id', async (req, res) => {
+  try {
+    // Retrieve the itinerary ID from the request parameters
+    const itineraryId = req.params.id;
+
+    // Find the itinerary in the database by its ID
+    const itinerary = await Itinerary.findById(itineraryId);
+
+    // Check if the itinerary exists
+    if (!itinerary) {
+      return res.status(404).send('Itinerary not found');
+    }
+
+    // Render a page to display the details of the itinerary
+    res.render('itinerary-view', { itinerary });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
+  }
 });
 
 module.exports = router;

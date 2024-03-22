@@ -11,7 +11,12 @@
     <% if (itineraries.length > 0) { %>
       <ul class="a" style="padding-right: 2rem;" font-size = "50px">
         <% itineraries.forEach(function(itinerary) { %>
-         <li class="a"><%= itinerary.itineraryName %><button class="button button">View</button><button class="button button">Share</button><button class="button button">Delete</button></li>
+          <li class="a">
+            <%= itinerary.itineraryName %>
+            <a href="/itinerary/<%= itinerary._id %>" class="button button">View</a>
+            <button class="button button">Share</button>
+            <button class="button button">Delete</button>
+          </li>
         <% }); %>
       </ul>
     <% } else { %>

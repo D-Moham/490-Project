@@ -3,13 +3,36 @@
 
 <body>
     <div class="container center-align">
-     <!-- <h4>Itinerary Page</h4> -->
-      <h5 class="white-text" type="center-align">Select An Itinerary To Begin!</h5>
-      <!-- <div style="margin-top: 3rem;" class="input-field">
-        <button class="button button">Create An Itinerary</button>
-        <button class="button button">View Your Itineraries</button>
-        <button class="button button">Edit An Itinerary</button>
-      </div> -->
+      <% if (itinerary) { %>
+        <h3><%= itinerary.itineraryName %></h3>
+        <p>Start Date: <%= itinerary.startDate %></p>
+        <p>End Date: <%= itinerary.endDate %></p>
+  
+        <h4>Destinations:</h4>
+        <ul>
+          <% itinerary.destinations.forEach(function(destination) { %>
+            <li>
+              <strong>Name:</strong> <%= destination.name %><br>
+              <strong>Transportation:</strong> <%= destination.transportation %><br>
+              <strong>Start Date:</strong> <%= destination.startDate %><br>
+              <strong>End Date:</strong> <%= destination.endDate %><br>
+              <% if (destination.activities.length > 0) { %>
+                <strong>Activities:</strong>
+                <ul>
+                  <% destination.activities.forEach(function(activity) { %>
+                    <li>
+                      <strong>Activity Name:</strong> <%= activity.activityName %><br>
+                      <strong>Activity Date:</strong> <%= activity.activityDate %>
+                    </li>
+                  <% }); %>
+                </ul>
+              <% } %>
+            </li>
+          <% }); %>
+        </ul>
+      <% } else { %>
+        <p>No itinerary found.</p>
+      <% } %>
     </div>
   </body>
   <link rel="stylesheet" href="/stylesheets/itinerary.css">
