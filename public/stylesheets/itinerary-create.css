@@ -1,0 +1,32 @@
+body {
+  background-color: rgba(29, 29, 31, 0.86);
+  font-family: 'Lato';
+}
+/* Override datepicker background and text color */
+.datepicker-date-display {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Custom CSS for input field color change */
+.input-field input[type=text], .input-field input[type=number], input[type=text] {
+  color: white; /* Set default text color */
+}
+
+.input-field input[type=text]:focus, .input-field input[type=number]:focus, input[type=text] {
+  border-bottom: 1px solid white !important;
+  box-shadow: 0 1px 0 0 white !important;
+  color: white;
+}
+
+#submit {
+  padding-top: 1rem;
+}
+
+#addDestination {
+  padding-top: 1rem;  
+}
+
+.input-field label{
+  pointer-events: all !important;
+}

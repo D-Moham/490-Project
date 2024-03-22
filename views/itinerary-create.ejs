@@ -2,13 +2,59 @@
 <%- include('./partials/header') %>
 
 <body>
-    <div class="container center-align">
+    <div class="container">
       <h5 class="white-text" type="center-align">Your Itinerary Starts Here!</h5>
-      <div class="input-field">
-        <label class="a" for="tripLength">Start Date:</label>
-        <input type="date" id="tripLength" name="tripLength"><br><br>
-        <!--<select id="itineraryDropdown"> </select>-->
-      </dive>
+      <!-- CREATE FORM -->
+      <form action="/itinerary/create" method="POST">
+        <div class="row">
+          <div class="col s6">
+            <!-- Itinerary Name -->
+            <div class="input-field">
+              <input id="itineraryName" type="text" class="validate" name="itineraryName" placeholder="Name" required>
+            </div>
+          </div>
+          <div class="col s6">
+            <!-- Description -->
+            <div class="input-field">
+              <input type="text" name="startingCity" placeholder="Starting City">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col s6">
+            <!-- Start Date -->
+            <div class="input-field">
+              <input id="startDate" type="text" class="datepicker" name="startDate" placeholder="Start Date" required>
+            </div>
+          </div>
+
+          <div class="col s6">
+            <!-- End Date -->
+            <div class="input-field">
+              <input id="endDate" type="text" class="datepicker" name="endDate" placeholder="End Date" required>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Destinations -->
+        <div id="destinationsContainer">
+          <h5 class="white-text">Destinations</h5>
+          <!-- Destinations will be appended here from the Script -->
+        </div>
+
+        <!-- Add Destination Button -->
+        <div class="form-group" id="addDestination">
+          <button class="waves-effect waves-dark btn">Add Destination</button>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group" id="submit">
+          <button style="color: black; margin-bottom: 3rem;" class="waves-effect waves-dark btn white">Create Itinerary</button>
+        </div>
+      </form>
+
     </div>
+    <script src="/scripts/itinerary-create.js"></script>
   </body>
-  <link rel="stylesheet" href="/stylesheets/itinerary.css">
+  <link rel="stylesheet" href="/stylesheets/itinerary-create.css">
