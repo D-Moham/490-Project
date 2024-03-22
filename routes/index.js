@@ -2,6 +2,7 @@ let express = require('express')
 let router = express.Router()
 let passport = require('passport')
 let User = require('../models/user')
+let Itinerary = require('../models/itinerary');
 const userAuth = require('../middleware/userAuth')
 
 // GET: root
@@ -68,21 +69,75 @@ router.get('/city', function(req, res) {
   res.render('city', {cityName: cityName});
 });
 
-router.get('/itinerary', (req, res) => {
-  if (req.isAuthenticated()) {
-    res.render('itinerary');
-    router.get('/itinerary/create', (req, res) => {
-      res.render('itinerary-create');
-    })
-    router.get('/itinerary/view', (req, res) => {
-      res.render('itinerary-view');
-    })
-    router.get('/itinerary/edit', (req, res) => {
-      res.render('itinerary-edit');
-    })
-  } else {
-    res.redirect('/register');
+// GET route to fetch all itineraries for the current user
+router.get('/itinerary', userAuth.checkLoggedIn, async (req, res) => {
+  try {
+    // Retrieve the current user's ID from the request object
+    const userId = req.user._id;
+
+    // Query the database to find all itineraries where the author's ID matches the current user's ID
+    const userItineraries = await Itinerary.find({ 'author.id': userId });
+
+    // Render the page with the user itineraries
+    res.render('itinerary', { itineraries: userItineraries });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch itineraries', error: error.message });
   }
+});
+
+// Get route to handle creation
+router.get('/itinerary/create', userAuth.checkLoggedIn, (req, res) => {
+  res.render('itinerary-create');
+})
+
+// POST route to create a new itinerary
+router.post('/itinerary/create', async (req, res) => {
+  try {
+    // Extract user information
+    const author = {
+      id: req.user._id,
+      username: req.user.username
+    };
+
+    // Extract data from req.body
+    const { itineraryName, startingCity, startDate, endDate, destinations } = req.body;
+
+    // Ensure destinations are formatted correctly as an array of objects
+    let formattedDestinations = [];
+    if (Array.isArray(destinations)) {
+      formattedDestinations = destinations.map(destination => ({
+        name: destination.name,
+        transportation: destination.transportation,
+        startDate: destination.startDate,
+        endDate: destination.endDate,
+        activities: destination.activities.map(activity => ({
+          activityName: activity.activityName,
+          activityDate: activity.activityDate
+        }))
+      }));
+    }
+
+    // Create a new itinerary object
+    const newItinerary = new Itinerary({
+      author, // Include the author information
+      itineraryName,
+      startingCity,
+      startDate,
+      endDate,
+      destinations: formattedDestinations // Use the formatted destinations
+    });
+
+    // Save the new itinerary to the database
+    await newItinerary.save();
+
+    res.status(201).redirect('/itinerary');
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to create itinerary', error: error.message });
+  }
+});
+
+router.get('/itinerary/view', userAuth.checkLoggedIn, (req, res) => {
+  res.render('itinerary-view');
 });
 
 module.exports = router;
