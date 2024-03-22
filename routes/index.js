@@ -10,10 +10,6 @@ router.get('/', (req, res) => {
     res.render('home')
 })
 
-router.get('/search', (req, res) => {
-  res.render('search');
-});
-
 router.get('/tracker', (req, res) => {
   res.render('tracker');
 });
