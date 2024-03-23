@@ -16,8 +16,9 @@ router.get('/tracker', (req, res) => {
 
 router.get('/profile', (req, res) => {
   let displayName = req.user?.displayName;
+  let username = req.user?.username;
 
-  res.render('profile', {displayName: displayName});
+  res.render('profile', {displayName: displayName, username: username});
 })
 
 // Register Page

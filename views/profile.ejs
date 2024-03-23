@@ -1,11 +1,32 @@
 <%- include('./partials/head') %>
 <%- include('./partials/header') %>
 
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
 <body>
   <div class="container">
-    <h4>Profile Page</h4>
+    <h4>Profile</h4>
+    <img src="/images/user.png" alt="Profile Picture" class="avatar">
+    <h5><%= displayName %></h5>
 
-    <h6><%= displayName %></h6>
+    <ul>
+      <li class=".buttonCenter"><a class="waves-effect waves-light btn-large buttonCenter">Personal Information</a></li>
+      <li class=".buttonCenter"><a class="waves-effect waves-light btn-large buttonCenter">Preferences</a></li>
+      <li class=".buttonCenter"><a class="waves-effect waves-light btn-large buttonCenter">Trips</a></li>
+      <li class=".buttonCenter"><a class="waves-effect waves-light btn-large buttonCenter">Itineraries</a></li>
+    </ul>
+
+    <!-- <form action="/action_page.php">
+      <label for="displayName">Display Name:</label><br>
+      <input type="text" id="displayName" name="displayName" value= "<%= displayName %>" >
+      <label for="username">User Name:</label>
+      <input type="text" id="username" name="username" value="<%= username %>">
+    </form> -->
+
+
+    <!-- <h6><%= displayName %></h6> -->
   </div>
 </body>
 <link rel="stylesheet" href="/stylesheets/profile.css">
