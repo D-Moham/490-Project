@@ -21,6 +21,16 @@ router.get('/profile', (req, res) => {
   res.render('profile', {displayName: displayName, username: username});
 })
 
+router.get('/personal', (req,res) => {
+  let displayName = req.user?.displayName;
+  let username = req.user?.username;
+  res.render('personal', {displayName: displayName, username: username});
+});
+
+router.get('/preferences', (req,res) => {
+  res.render('preferences');
+});
+
 // Register Page
 router.get('/register', (req, res) => {
     res.render('register')
