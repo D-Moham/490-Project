@@ -17,17 +17,16 @@ router.get('/tracker', (req, res) => {
 router.get('/profile', (req, res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
-
   res.render('profile', {displayName: displayName, username: username});
 })
 
-router.get('/personal', (req,res) => {
+router.get('/profile/personal', (req,res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   res.render('personal', {displayName: displayName, username: username});
 });
 
-router.get('/preferences', (req,res) => {
+router.get('/profile/preferences', (req,res) => {
   res.render('preferences');
 });
 

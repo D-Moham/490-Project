@@ -2,13 +2,13 @@
 <%- include('./partials/header') %>
 <body>
     <div class="row">
-        <h2 style="text-align: center">Login</h2>
-        <div style="width: 30%; margin: 25px auto;">
-            <% if(typeof(message) != "undefined") { %>
+        <% if(typeof(message) != "undefined") { %>
             <div class="message">
                 <h7><%= message %></h7>
             </div>
-            <% } %>
+        <% } %>
+        <h4 style="text-align: center">Log in to your account</h4>
+        <div style="width: 30%; margin: 25px auto;">
             <form action="/login" method="post">
                 <div class="form-group">
                     <input class="form-control" type="text" name="username" placeholder="Username">

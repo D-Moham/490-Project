@@ -7,9 +7,9 @@
 }
 
 body {
-background-color: rgba(29, 29, 31, 0.86);
-font-family: 'Lato';
-color: white;
+  background-color: rgba(29, 29, 31, 0.86);
+  font-family: 'Lato';
+  color: white;
 }
 
 h4{
@@ -24,16 +24,17 @@ h5{
 }
 
 .avatar{
-height: 200px;
-width: auto;
-border-radius: 50%;
-display: block;
-margin-left: auto;
-margin-right: auto;
+  height: 200px;
+  width: auto;
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
 }
 
 form input{
-color: white;
+  color: white;
 }
 
 .buttonCenter{
