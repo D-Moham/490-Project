@@ -52,6 +52,13 @@ ul li.a {
   font-size: 20px !important;
   align-items: center!important;
 }
+/* This allows the lists to be side by side */
+.row{clear:both}
+
+.column{
+    width: 50%;
+    float: left;
+}
 
 /* Custom CSS for the buttons */
 .button {
