@@ -5,16 +5,13 @@
     <div class="container center-align">
       <% if (itinerary) { %>
         <h3><%= itinerary.itineraryName %></h3>
-        <p>Start Date: <%= itinerary.formattedStartDate %></p>
-        <p>End Date: <%= itinerary.formattedEndDate %></p>
-  
-        <h4>Destinations:</h4>
-             <ul class = "a">
+        <label class="a">Trip Start Date: <%= itinerary.formattedStartDate %> | Trip End Date: <%= itinerary.formattedEndDate %></label>
+          <ul class = "a">
                 <% itinerary.destinations.forEach(function(destination) { %>
             <li class = "a">
-              <strong>Name:</strong> <%= destination.name %><br>
+              <strong>City Name:</strong> <%= destination.name %>
               <strong>Transportation:</strong> <%= destination.transportation %><br>
-              <strong>Start Date:</strong> <%= destination.formattedStartDate %><br>
+              <strong>Start Date:</strong> <%= destination.formattedStartDate %> |
               <strong>End Date:</strong> <%= destination.formattedEndDate %><br>
               <% if (destination.activities.length > 0) { %>
                 <strong>Activities:</strong>

@@ -5,10 +5,10 @@
   <div class="container center-align">
    <!-- <h4>Itinerary Page</h4> -->
     <h5 class="white-text" type="center-align" style="font-size:xx-large;">Welcome to the Itinerary Hub!</h5>
-    <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
 
     <!-- Check if array is empty or not -->
     <% if (itineraries.length > 0) { %>
+      <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
       <ul class="a" style="padding-right: 2rem;" font-size = "50px">
         <% itineraries.forEach(function(itinerary) { %>
           <li class="a">
@@ -19,8 +19,10 @@
           </li>
         <% }); %>
       </ul>
+      <p type="center-align" style="font-size:x-large;">Start Another Itinerary! Click the Button Below:</p>
     <% } else { %>
       <h2>No itineraries found.</h2>
+      <p type="center-align" style="font-size:x-large;">Get Started! Click the Button Below:</p>
     <% } %>
 
     <a href="itinerary/create">
