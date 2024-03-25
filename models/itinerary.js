@@ -6,6 +6,10 @@ const activitySchema = new mongoose.Schema({
   activityDate: Date
 });
 
+activitySchema.virtual('formattedActivityDate').get(function() {
+  return this.activityDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+})
+
 // Define a schema for destination and transportation
 const destinationSchema = new mongoose.Schema({
   name: String,
@@ -13,6 +17,15 @@ const destinationSchema = new mongoose.Schema({
   activities: [activitySchema], // Array of activity objects for this destination
   startDate: Date, // Start date for this destination
   endDate: Date // End date for this destination
+});
+
+// Define virtuals to format dates
+destinationSchema.virtual('formattedStartDate').get(function() {
+  return this.startDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+});
+
+destinationSchema.virtual('formattedEndDate').get(function() {
+  return this.endDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
 });
 
 const itinerarySchema = new mongoose.Schema({
@@ -28,6 +41,15 @@ const itinerarySchema = new mongoose.Schema({
   startDate: Date, // Start date for the entire itinerary
   endDate: Date, // End date for the entire itinerary
   destinations: [destinationSchema] // Array of destination objects
+});
+
+// Define virtuals to format dates
+itinerarySchema.virtual('formattedStartDate').get(function() {
+  return this.startDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+});
+
+itinerarySchema.virtual('formattedEndDate').get(function() {
+  return this.endDate.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
 });
 
 const Itinerary = mongoose.model('Itinerary', itinerarySchema);
