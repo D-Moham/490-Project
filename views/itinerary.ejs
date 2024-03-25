@@ -14,8 +14,8 @@
           <li class="a">
             <%= itinerary.itineraryName %>
             <a href="/itinerary/<%= itinerary._id %>" class="button button">View</a>
-            <button class="button button">Share</button>
-            <button class="button button">Delete</button>
+            <a href="/itinerary/share/<%= itinerary._id%>" class="button button">Share</a>
+            <a href="/itinerary/delete/<%= itinerary._id %>" class="button button">Delete</a>
           </li>
         <% }); %>
       </ul>

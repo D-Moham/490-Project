@@ -164,4 +164,28 @@ router.get('/itinerary/:id', async (req, res) => {
   }
 });
 
+// GET route to delete an individual itinerary
+router.get('/itinerary/delete/:id', async (req, res) => {
+  try {
+    // Retrieve the itinerary ID from the request parameters
+    const itineraryId = req.params.id;
+
+    // Find the itinerary in the database by its ID
+    const itinerary = await Itinerary.findById(itineraryId);
+
+    // Check if the itinerary exists
+    if (!itinerary) {
+      return res.status(404).send('Itinerary not found');
+    }
+
+    // Delete the found itinerary
+    await itinerary.deleteOne();
+
+    // Redirect to the Itinerary Hub
+    res.status(201).redirect('/itinerary');
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to delete itinerary', error: error.message });
+  }
+});
+
 module.exports = router;
