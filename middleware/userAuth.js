@@ -4,7 +4,7 @@ checkLoggedIn = (req, res, next) => {
     return;
   }
 
-  res.status(403).render('login');
+  res.status(403).render('login', {message: 'You Must Authenticate to Perform That Action'});
   return;
 }
 
