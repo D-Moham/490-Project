@@ -10,20 +10,26 @@ body {
   background-color: rgba(29, 29, 31, 0.86);
   font-family: 'Lato';
   color: white;
+  background-image: url(/images/pexels-joyston-judah-933054.jpg);
+  background-color: rgb(0, 0, 0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+
 }
 
-h4{
-text-align: center;
-margin-bottom: 5rem;
+h4 {
+  text-align: center;
+  margin-bottom: 5rem;
 }
 
-h5{
+h5 {
   text-align: center;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-.avatar{
+.avatar {
   height: 200px;
   width: auto;
   border-radius: 50%;
@@ -33,11 +39,11 @@ h5{
   margin-top: 5rem;
 }
 
-form input{
+form input {
   color: white;
 }
 
-.buttonCenter{
+.buttonCenter {
   display: block;
   text-align: center;
   margin-top: 10px;
@@ -45,8 +51,17 @@ form input{
   background-color: black;
 }
 
-/* ul li a{
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  border-radius: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
   text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-} */
+}

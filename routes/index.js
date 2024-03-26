@@ -14,19 +14,20 @@ router.get('/tracker', (req, res) => {
   res.render('tracker');
 });
 
-router.get('/profile', userAuth.checkLoggedIn, (req, res) => {
+router.get('/profile', (req, res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   res.render('profile', {displayName: displayName, username: username});
 })
 
-router.get('/profile/personal', userAuth.checkLoggedIn, (req,res) => {
+router.get('/profile/personal', (req,res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
-  res.render('personal', {displayName: displayName, username: username});
+  let homeCity = req.user.homeCity;
+  res.render('personal', {displayName: displayName, username: username, homeCity: homeCity});
 });
 
-router.get('/profile/preferences', userAuth.checkLoggedIn, (req,res) => {
+router.get('/profile/preferences', (req,res) => {
   res.render('preferences');
 });
 

@@ -1,10 +1,27 @@
 <%- include('./partials/head') %>
-<%- include('./partials/header') %>
+    <%- include('./partials/header') %>
 
-<body>
-    <h4>Personal Information</h4>
-    <img src="/images/user.png" alt="Profile Picture" class="avatar">
-    <h5><%= displayName %></h5>
-</body>
+        <body>
+            <div class="bg-text container">
+                <h4>Personal Information</h4>
+                <img src="/images/user.png" alt="Profile Picture" class="avatar">
+                <h5>
+                    <%= displayName %>
+                </h5>
 
-<link rel="stylesheet" href="/stylesheets/personal.css">
+                <form action="/action_page.php">
+                    <label for="displayName">Name:</label><br>
+                    <input class="center" type="text" id="displayName" name="displayName" value="<%= displayName %>" readonly>
+                    <label for="username">User Name:</label><br>
+                    <input class="center" type="text" id="username" name="username" value="<%= username %>">
+                    <label for="townOrigin">Town of Origin</label><br>
+                    <input class="center" type="text" id="homeCity" name="homeCity" value="<%= homeCity %>">
+                    <a class="waves-effect waves-light btn-large btn black">Change Personal Information & Password</a>
+                </form>
+            </div>
+
+            <script src="/public/scripts/change.js"></script>
+
+        </body>
+
+        <link rel="stylesheet" href="/stylesheets/personal.css">
