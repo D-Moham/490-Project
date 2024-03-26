@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     activities.forEach(function(activity, index) {
       activity.querySelector('input[name$="[activityName]"]').setAttribute('name', `destinations[${destination.dataset.index - 1}][activities][${index}][activityName]`);
       activity.querySelector('input[name$="[activityDate]"]').setAttribute('name', `destinations[${destination.dataset.index - 1}][activities][${index}][activityDate]`);
+      activity.querySelector('input[name$="[transportation]"]').setAttribute('name', `destinations[${destination.dataset.index - 1}][activities][${index}][transportation]`);
     });
   }
 
@@ -81,6 +82,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="Date of Activity" required>
               </div>
             </div>
+            <div class="col s5">
+            <div class="input-field">
+              <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" placeholder="Transportation" required>
+            </div>
+          </div>
             <div class="col s2">
               <a style="margin-bottom: -3rem;" class="btn removeActivity">Remove</a>
             </div>
@@ -128,6 +134,11 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="col s5">
             <div class="input-field">
               <input type="text" class="datepicker" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityDate]" placeholder="Date of Activity" required>
+            </div>
+          </div>
+          <div class="col s5">
+            <div class="input-field">
+              <input type="text" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]" placeholder="Transportation" required>
             </div>
           </div>
           <div class="col s2">

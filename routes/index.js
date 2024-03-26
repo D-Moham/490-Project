@@ -124,7 +124,8 @@ router.post('/itinerary/create', async (req, res) => {
         endDate: destination.endDate,
         activities: destination.activities.map(activity => ({
           activityName: activity.activityName,
-          activityDate: activity.activityDate
+          activityDate: activity.activityDate,
+          transportation: activity.transportation
         }))
       }));
     }
