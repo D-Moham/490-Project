@@ -26,4 +26,31 @@
     <a href="#" data-target="mobile-nav" class="sidenav-trigger"><i class="material-icons">menu</i></a>
   </div>
 </nav>
+
+<!-- Mobile Navigation -->
+<ul class="sidenav" id="mobile-nav">
+  <!-- Left-aligned links -->
+  <li><a href="/">TechTravel</a></li>
+  <li><a href="/itinerary">Itineraries</a></li>
+  <li><a href="/tracker">Transit Tracker</a></li>
+  <li><a href="/"><i class="material-icons">search</i></a></li>
+  <!-- Right-aligned buttons -->
+  <% if (isAuthenticated) { %>
+    <!-- Display logout button -->
+    <li><a href="/profile">Profile</a></li>
+    <li><a href="/logout">Logout</a></li>
+  <% } else { %>
+    <!-- Display login/signup buttons -->
+    <li><a href="/login">Login</a></li>
+    <li><a href="/register">Sign Up</a></li>
+  <% } %>
+</ul>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize sidenav
+    var elems = document.querySelectorAll('.sidenav');
+    var instances = M.Sidenav.init(elems);
+  });
+</script>
 <link rel="stylesheet" href="/stylesheets/header.css">

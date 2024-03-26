@@ -3,9 +3,16 @@
 <body>
     <div class="row">
         <% if(typeof(message) != "undefined") { %>
-            <div class="message">
-                <h7><%= message %></h7>
-            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Toast function
+                    function showToast(message) {
+                        M.toast({html: message});
+                    }
+                    // Call toast function with the message
+                    showToast('<%= message %>');
+                });
+            </script>
         <% } %>
         <h4 style="text-align: center">Log in to your account</h4>
         <div style="width: 30%; margin: 25px auto;">
