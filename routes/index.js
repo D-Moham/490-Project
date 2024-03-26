@@ -38,8 +38,13 @@ router.get('/register', (req, res) => {
 // Handle sign-up
 router.post('/register', (req, res) => {
     // Save New User
-    let newUser = new User({ username: req.body.username });
-    newUser.displayName = req.body.displayName;
+    const { username, displayName, homeCity } = req.body;
+    
+    const newUser = new User({ 
+      username: username,
+      displayName: displayName,
+      homeCity: homeCity
+    });
 
     User.register(newUser, req.body.password, (err, user) => {
       if (err) {
