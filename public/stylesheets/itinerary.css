@@ -14,7 +14,7 @@
 
 /* Custom CSS for the labels */
 label.a {
-  background: rgba(75, 75, 75, 0.40);
+  background: rgba(0, 0, 0, 0.25);
   color: white;
   text-align: center!important;
   font-size: 20px !important;
@@ -36,7 +36,7 @@ ul.a {
   background: rgba(75, 75, 75, 0.40);
   align-items: center!important;
   list-style-type: circle!important;
-  padding: 16px 12px;
+  padding: 18px 32px;
   margin: 10px 64px;
   font-size: 20px !important;
   border-radius: 40px!important;
