@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 // Define a schema for activities
 const activitySchema = new mongoose.Schema({
   activityName: String,
-  activityDate: Date
+  activityDate: Date,
+  transportation: String
 });
 
 activitySchema.virtual('formattedActivityDate').get(function() {

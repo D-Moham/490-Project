@@ -19,7 +19,8 @@
                   <% destination.activities.forEach(function(activity) { %>
                     <li class = "a">
                       <strong>Activity Name:</strong> <%= activity.activityName %><br>
-                      <strong>Activity Date:</strong> <%= activity.formattedActivityDate %>
+                      <strong>Activity Date:</strong> <%= activity.formattedActivityDate %> |
+                      <strong>Transportation:</strong> <%= activity.transportation %><br>
                     </li>
                   <% }); %> <br>
                 </ul>
