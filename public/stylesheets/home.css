@@ -3,6 +3,7 @@ body {
     background-image: url(/images/pexels-joyston-judah-933054.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     color: white;
 }
 

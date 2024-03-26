@@ -8,23 +8,27 @@
 }
 
 body {
-    background-color: rgba(29, 29, 31, 0.86);
+    background-image: url(/images/pexels-joyston-judah-933054.jpg);
+    background-color: rgb(0, 0, 0);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: 'Lato';
     color: white;
 }
 
-h3{
+h3 {
     text-align: center;
     margin-bottom: 5rem;
     margin-top: 5rem;
-    }
+}
 
-h4{
+h4 {
     text-align: center;
     margin: auto;
 }
 
-.center{
+.center {
     text-align: center;
 }
 
@@ -34,5 +38,19 @@ h4{
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: black;
-  }
+}
 
+.bg-text {
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
