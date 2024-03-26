@@ -15,6 +15,7 @@ activitySchema.virtual('formattedActivityDate').get(function() {
 const destinationSchema = new mongoose.Schema({
   name: String,
   transportation: String,
+  hotel: String,
   activities: [activitySchema], // Array of activity objects for this destination
   startDate: Date, // Start date for this destination
   endDate: Date // End date for this destination

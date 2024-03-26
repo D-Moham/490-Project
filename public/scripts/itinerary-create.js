@@ -46,14 +46,19 @@ document.addEventListener('DOMContentLoaded', function() {
         <h6 class="white-text">#${destinationCounter} <a style="margin-left: 2rem;" class="btn removeDestination">Remove</a></h6> 
 
         <div class="row">
-          <div class="col s6">
+          <div class="col s4">
             <div class="input-field">
               <input type="text" name="destinations[${destinationCounter - 1}][name]" placeholder="Name" required>
             </div>
           </div>
-          <div class="col s6">
+          <div class="col s4">
             <div class="input-field">
               <input type="text" name="destinations[${destinationCounter - 1}][transportation]" placeholder="Type of Transit" required>
+            </div>
+          </div>
+          <div class="col s4">
+            <div class="input-field">
+              <input type="text" name="destinations[${destinationCounter - 1}][hotel]" placeholder="Hotel Name" required>
             </div>
           </div>
         </div>
@@ -72,17 +77,17 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="row"><div class="col s12"><h6 class="white-text">Activities <a style="margin-left: 2rem;" class="btn addActivity">Add</a> </h6></div></div>
         <div class="activitiesContainer">
           <div class="activity row">
-            <div class="col s5">
+            <div class="col s3">
               <div class="input-field">
                 <input type="text" name="destinations[${destinationCounter - 1}][activities][0][activityName]" placeholder="Activity Name" required>
               </div>
             </div>
-            <div class="col s5">
+            <div class="col s3">
               <div class="input-field">
                 <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="Date of Activity" required>
               </div>
             </div>
-            <div class="col s5">
+            <div class="col s3">
             <div class="input-field">
               <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" placeholder="Transportation" required>
             </div>
@@ -126,22 +131,22 @@ document.addEventListener('DOMContentLoaded', function() {
       var activityCounter = activitiesContainer.querySelectorAll('.activity').length;
       var activityHTML = `
         <div class="activity row">
-          <div class="col s5">
+          <div class="col s3">
             <div class="input-field">
               <input type="text" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityName]" placeholder="Activity Name" required>
             </div>
           </div>
-          <div class="col s5">
+          <div class="col s3">
             <div class="input-field">
               <input type="text" class="datepicker" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityDate]" placeholder="Date of Activity" required>
             </div>
           </div>
-          <div class="col s5">
+          <div class="col s3">
             <div class="input-field">
               <input type="text" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]" placeholder="Transportation" required>
             </div>
           </div>
-          <div class="col s2">
+          <div class="col s3">
             <a style="margin-bottom: -3rem;" class="btn removeActivity">Remove</a>
           </div>
         </div>
