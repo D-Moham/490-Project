@@ -14,19 +14,19 @@ router.get('/tracker', (req, res) => {
   res.render('tracker');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', userAuth.checkLoggedIn, (req, res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   res.render('profile', {displayName: displayName, username: username});
 })
 
-router.get('/profile/personal', (req,res) => {
+router.get('/profile/personal', userAuth.checkLoggedIn, (req,res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   res.render('personal', {displayName: displayName, username: username});
 });
 
-router.get('/profile/preferences', (req,res) => {
+router.get('/profile/preferences', userAuth.checkLoggedIn, (req,res) => {
   res.render('preferences');
 });
 
@@ -37,14 +37,9 @@ router.get('/register', (req, res) => {
 
 // Handle sign-up
 router.post('/register', (req, res) => {
-    const { username, displayName, homeCity } = req.body;
-
     // Save New User
-    const newUser = new User({ 
-      username: username,
-      displayName: displayName,
-      homeCity: homeCity
-    });
+    let newUser = new User({ username: req.body.username });
+    newUser.displayName = req.body.displayName;
 
     User.register(newUser, req.body.password, (err, user) => {
       if (err) {
