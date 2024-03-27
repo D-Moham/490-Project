@@ -25,7 +25,7 @@ input {
 #toast-container {
   top: auto !important;
   right: auto !important;
-  bottom: 60%;
+  bottom: 40%;
   left: 50%;
   transform: translateX(-50%);
 }
