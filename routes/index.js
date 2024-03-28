@@ -120,6 +120,7 @@ router.post('/itinerary/create', async (req, res) => {
       formattedDestinations = destinations.map(destination => ({
         name: destination.name,
         transportation: destination.transportation,
+        hotel: destination.hotel,
         startDate: destination.startDate,
         endDate: destination.endDate,
         activities: destination.activities.map(activity => ({
@@ -191,6 +192,72 @@ router.get('/itinerary/delete/:id', async (req, res) => {
     res.status(201).redirect('/itinerary');
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete itinerary', error: error.message });
+  }
+});
+
+router.get('/itinerary/edit', async (req, res) => {
+  try {
+    // Retrieve the itinerary ID from the request parameters
+    const itineraryId = req.params.id;
+
+    // Find the itinerary in the database by its ID
+    const itinerary = await Itinerary.findById(itineraryId);
+    res.render('itinerary-edit', { itinerary });
+  }   catch (error) {
+    res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
+  }
+})
+
+router.get('/itinerary/edit/:id', async (req, res) => {
+  try {
+    // Retrieve the itinerary ID from the request parameters
+    const itineraryId = req.params.id;
+
+    // Find the itinerary in the database by its ID
+    const itinerary = await Itinerary.findById(itineraryId);
+
+    // Extract user information
+    const author = {
+      id: req.user._id,
+      username: req.user.username
+    };
+
+    // Extract data from req.body
+    const { itineraryName, startingCity, startDate, endDate, destinations } = req.body;
+
+    // Ensure destinations are formatted correctly as an array of objects
+    let formattedDestinations = [];
+    if (Array.isArray(destinations)) {
+      formattedDestinations = destinations.map(destination => ({
+        name: destination.name,
+        transportation: destination.transportation,
+        hotel: destination.hotel,
+        startDate: destination.startDate,
+        endDate: destination.endDate,
+        activities: destination.activities.map(activity => ({
+          activityName: activity.activityName,
+          activityDate: activity.activityDate,
+          transportation: activity.transportation
+        }))
+      }));
+    }
+
+    // Create a new itinerary object
+    itinerary = new Itinerary({
+      author, // Include the author information
+      itineraryName,
+      startingCity,
+      startDate,
+      endDate,
+      destinations: formattedDestinations // Use the formatted destinations
+    });
+
+    // Save the new itinerary to the database
+    await itinerary.updateOne();
+
+    res.status(201).redirect('/itinerary/view/:id');
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to create itinerary', error: error.message });
   }
 });
 
