@@ -204,7 +204,7 @@ router.get('/itinerary/edit/:id', userAuth.checkLoggedIn, async (req, res) => {
     const itinerary = await Itinerary.findById(itineraryId);
     res.render('itinerary-edit', { itinerary });
   }   catch (error) {
-    res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
+    res.status(500).json({ message: 'Failed to fetch itinerary for edit', error: error.message });
   }
 })
 
