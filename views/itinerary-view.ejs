@@ -7,10 +7,12 @@
         <h3><%= itinerary.itineraryName %></h3>
           <ul class = "a">
             <label class="a">Trip Start Date: <%= itinerary.formattedStartDate %> | Trip End Date: <%= itinerary.formattedEndDate %></label>
+            <a href="/itinerary/edit/<%= itinerary._id %>" class="button button">Edit</a>
             <% itinerary.destinations.forEach(function(destination) { %>
             <li class = "a">
               <strong>City Name:</strong> <%= destination.name %> |
-              <strong>Transportation:</strong> <%= destination.transportation %><br>
+              <strong>Transportation:</strong> <%= destination.transportation %> |
+              <strong>Hotel:</strong> <%= destination.hotel %><br>
               <strong>Start Date:</strong> <%= destination.formattedStartDate %> |
               <strong>End Date:</strong> <%= destination.formattedEndDate %><br>
               <% if (destination.activities.length > 0) { %>
