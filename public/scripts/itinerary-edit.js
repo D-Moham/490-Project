@@ -34,10 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
       activity.querySelector('input[name$="[transportation]"]').setAttribute('name', `destinations[${destination.dataset.index - 1}][activities][${index}][transportation]`);
     });
   }
-  var datepickers = document.querySelectorAll('.datepicker');
-  datepickers.forEach(function(datepicker) {
-    M.Datepicker.init(datepicker, datepickerOptions);
-  });
 
   // Add Destination Button Click Event
   document.getElementById('addDestination').addEventListener('click', function(event) {
@@ -92,10 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
             </div>
             <div class="col s3">
-            <div class="input-field">
-              <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" placeholder="Transportation" required>
+              <div class="input-field">
+                <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" placeholder="Transportation" required>
+              </div>
             </div>
-          </div>
             <div class="col s2">
               <a style="margin-bottom: -3rem;" class="btn removeActivity">Remove</a>
             </div>
@@ -176,9 +172,5 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update activity indexes after removal
       updateActivityIndexes(destination);
     }
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.chips');
-    var instances = M.Chips.init(elems, options);
   });
 });

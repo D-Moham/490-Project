@@ -151,7 +151,7 @@ router.post('/itinerary/create', async (req, res) => {
 });
 
 // GET route to view an individual itinerary
-router.get('/itinerary/:id', async (req, res) => {
+router.get('/itinerary/:id', userAuth.checkLoggedIn, async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
@@ -195,7 +195,7 @@ router.get('/itinerary/delete/:id', async (req, res) => {
   }
 });
 
-router.get('/itinerary/edit/:id', async (req, res) => {
+router.get('/itinerary/edit/:id', userAuth.checkLoggedIn, async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
@@ -215,7 +215,6 @@ router.post('/itinerary/edit/:id', async (req, res) => {
 
     // Find the itinerary in the database by its ID
     const itinerary = await Itinerary.findById(itineraryId);
-    console.log(itinerary)
 
     // Extract data from req.body
     const { itineraryName, startingCity, startDate, endDate, destinations } = req.body;
@@ -238,6 +237,10 @@ router.post('/itinerary/edit/:id', async (req, res) => {
     }
 
     // Update the itinerary object with new values
+    itinerary.author = {
+      id: req.user._id,
+      username: req.user.username
+    };
     itinerary.itineraryName = itineraryName;
     itinerary.startingCity = startingCity;
     itinerary.startDate = startDate;
@@ -245,9 +248,9 @@ router.post('/itinerary/edit/:id', async (req, res) => {
     itinerary.destinations = formattedDestinations;
 
     // Save the updated itinerary to the database
-    await itinerary.updateOne();
+    await itinerary.save();
 
-    res.status(201).redirect('/itinerary/view/:id');
+    res.status(200).redirect('/itinerary');
   } catch (error) {
     res.status(500).json({ message: 'Failed to update itinerary', error: error.message });
   }
