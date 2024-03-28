@@ -2,121 +2,121 @@
 <%- include('./partials/header') %>
 
 <body>
-    <div class="container">
-      <h5 class="white-text" type="center-align">Your Itinerary Starts Here!</h5>
-      <!-- CREATE FORM -->
-      <form action="/itinerary/edit" method="POST">
-        <div class="row">
-          <div class="col s6">
-            <!-- Itinerary Name -->
-            <div class="input-field">
-              <input id="itineraryName" type="text" class="validate" name="itineraryName" value="<%= itinerary.itineraryName %>" required>
-            </div>
+  <div class="container">
+    <h5 class="white-text" type="center-align">Edit Itinerary</h5>
+    <!-- EDIT FORM -->
+    <form action="/itinerary/edit/<%= itinerary._id %>" method="POST">
+      <div class="row">
+        <div class="col s6">
+          <!-- Itinerary Name -->
+          <div class="input-field">
+            <input id="itineraryName" type="text" class="validate" name="itineraryName" value="<%= itinerary.itineraryName %>" required>
           </div>
-          <div class="col s6">
-            <!-- Description -->
-            <div class="input-field">
-              <input type="text" name="startingCity" value="<%= itinerary.startingCity %>">
-            </div>
+        </div>
+        <div class="col s6">
+          <!-- Description -->
+          <div class="input-field">
+            <input type="text" name="startingCity" value="<%= itinerary.startingCity %>" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <!-- Start Date -->
+          <div class="input-field">
+            <input id="startDate" type="text" class="datepicker" name="startDate" value="<%= itinerary.formattedStartDate %>" required>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col s6">
-            <!-- Start Date -->
-            <div class="input-field">
-              <input id="startDate" type="text" class="datepicker" name="startDate" value="<%= itinerary.formattedStartDate %>" required>
-            </div>
-          </div>
-
-          <div class="col s6">
-            <!-- End Date -->
-            <div class="input-field">
-              <input id="endDate" type="text" class="datepicker" name="endDate" value="<%= itinerary.formattedEndDate %>" required>
-            </div>
+        <div class="col s6">
+          <!-- End Date -->
+          <div class="input-field">
+            <input id="endDate" type="text" class="datepicker" name="endDate" value="<%= itinerary.formattedEndDate %>" required>
           </div>
         </div>
-      
-        <!-- Destinations -->
-        <div id="destinationsContainer">
-          <h5 class="white-text">Destinations</h5>
-          <!-- Destinations will be appended here from the Script -->
-          <% itinerary.destinations.forEach(function(destination) { %>
-          <div style="padding-top: 3rem;" class="destination" data-index="${destinationCounter}">
-            <h6 class="white-text"> Old Destination Info <a style="margin-left: 2rem;" class="btn removeDestination">Remove</a></h6> 
-    
+      </div>
+
+      <!-- Destinations -->
+      <div id="destinationsContainer">
+        <h5 class="white-text">Destinations</h5>
+        <!-- Destinations will be appended here from the Script -->
+        <% itinerary.destinations.forEach(function(destination, index) { %>
+          <div style="padding-top: 3rem;" class="destination" data-index="<%= index + 1 %>">
+            <h6 class="white-text">#<%= index + 1 %> <a style="margin-left: 2rem;" class="btn removeDestination">Remove</a></h6> 
             <div class="row">
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][name]" value="<%= destination.name %>" required>
+                  <input type="text" name="destinations[<%= index %>][name]" value="<%= destination.name %>" required>
                 </div>
               </div>
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][transportation]" value="<%= destination.transportation %>" required>
+                  <input type="text" name="destinations[<%= index %>][transportation]" value="<%= destination.transportation %>" required>
                 </div>
               </div>
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][hotel]" value="<%= destination.hotel %>" required>
+                  <input type="text" name="destinations[<%= index %>][hotel]" value="<%= destination.hotel %>" required>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col s6">
                 <div class="input-field">
-                  <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][startDate]" value="<%= destination.formattedStartDate %>" required>
+                  <input type="text" class="datepicker" name="destinations[<%= index %>][startDate]" value="<%= destination.formattedStartDate %>" required>
                 </div>
               </div>
               <div class="col s6">
                 <div class="input-field">
-                  <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][endDate]" value=" <%= destination.formattedEndDate %>" required>
+                  <input type="text" class="datepicker" name="destinations[<%= index %>][endDate]" value="<%= destination.formattedEndDate %>" required>
                 </div>
               </div>
             </div>
-            <div class="row"><div class="col s12"><h6 class="white-text">Activities <a style="margin-left: 2rem;" class="btn addActivity">Add</a> </h6></div></div>
-            <% if (destination.activities.length > 0) { %>
+            <div class="row">
+              <div class="col s12">
+                <h6 class="white-text">Activities <a style="margin-left: 2rem;" class="btn addActivity">Add</a> </h6>
+              </div>
+            </div>
             <div class="activitiesContainer">
-              <% destination.activities.forEach(function(activity) { %>
-              <div class="activity row">
-                <div class="col s3">
-                  <div class="input-field">
-                    <input type="text" name="destinations[${destinationCounter - 1}][activities][0][activityName]" value="<%= activity.activityName %>" required>
+              <% destination.activities.forEach(function(activity, activityIndex) { %>
+                <div class="activity row">
+                  <div class="col s3">
+                    <div class="input-field">
+                      <input type="text" name="destinations[<%= index %>][activities][<%= activityIndex %>][activityName]" value="<%= activity.activityName %>" required>
+                    </div>
+                  </div>
+                  <div class="col s3">
+                    <div class="input-field">
+                      <input type="text" class="datepicker" name="destinations[<%= index %>][activities][<%= activityIndex %>][activityDate]" value="<%= activity.formattedActivityDate %>" required>
+                    </div>
+                  </div>
+                  <div class="col s3">
+                    <div class="input-field">
+                      <input type="text" name="destinations[<%= index %>][activities][<%= activityIndex %>][transportation]" value="<%= activity.transportation %>" required>
+                    </div>
+                  </div>
+                  <div class="col s3">
+                    <a style="margin-bottom: -3rem;" class="btn removeActivity">Remove</a>
                   </div>
                 </div>
-                <div class="col s3">
-                  <div class="input-field">
-                    <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" value="<%= activity.formattedActivityDate %>" required>
-                  </div>
-                </div>
-                <div class="col s3">
-                <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" value="<%= activity.transportation %>" required>
-                </div>
-              </div>
-                <div class="col s2">
-                  <a style="margin-bottom: -3rem;" class="btn removeActivity">Remove</a>
-                </div>
-              </div>
               <% }); %>
             </div>
-            <% } %>
-            <% }); %>
           </div>
-        </div>
+        <% }); %>
+      </div>
 
-        <!-- Add Destination Button -->
-        <div class="form-group" id="addDestination">
-          <button class="waves-effect waves-dark btn">Add Destination</button>
-        </div>
+      <!-- Add Destination Button -->
+      <div class="form-group" id="addDestination">
+        <button class="waves-effect waves-dark btn">Add Destination</button>
+      </div>
 
-        <!-- Submit Button -->
-        <div class="form-group" id="submit">
-          <button style="color: black; margin-bottom: 3rem;" class="waves-effect waves-dark btn white">Save Changes</button>
-        </div>
-      </form>
-
-    </div>
-    <script src="/scripts/itinerary-edit.js"></script>
+      <!-- Submit Button -->
+      <div class="form-group" id="submit">
+        <button style="color: black; margin-bottom: 3rem;" class="waves-effect waves-dark btn white">Save Changes</button>
+      </div>
+    </form>
+  </div>
+  <script src="/scripts/itinerary-create.js"></script>
 </body>
 <link rel="stylesheet" href="/stylesheets/itinerary-create.css">

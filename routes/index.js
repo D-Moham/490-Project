@@ -151,7 +151,7 @@ router.post('/itinerary/create', async (req, res) => {
 });
 
 // GET route to view an individual itinerary
-router.get('/itinerary/:id', async (req, res) => {
+router.get('/itinerary/:id', userAuth.checkLoggedIn, async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
@@ -195,7 +195,7 @@ router.get('/itinerary/delete/:id', async (req, res) => {
   }
 });
 
-router.get('/itinerary/edit/:id', async (req, res) => {
+router.get('/itinerary/edit/:id', userAuth.checkLoggedIn, async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
@@ -208,19 +208,13 @@ router.get('/itinerary/edit/:id', async (req, res) => {
   }
 })
 
-router.get('/itinerary/edit/:id', async (req, res) => {
+router.post('/itinerary/edit/:id', async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
 
     // Find the itinerary in the database by its ID
     const itinerary = await Itinerary.findById(itineraryId);
-
-    // Extract user information
-    const author = {
-      id: req.user._id,
-      username: req.user.username
-    };
 
     // Extract data from req.body
     const { itineraryName, startingCity, startDate, endDate, destinations } = req.body;
@@ -242,22 +236,23 @@ router.get('/itinerary/edit/:id', async (req, res) => {
       }));
     }
 
-    // Create a new itinerary object
-    itinerary = new Itinerary({
-      author, // Include the author information
-      itineraryName,
-      startingCity,
-      startDate,
-      endDate,
-      destinations: formattedDestinations // Use the formatted destinations
-    });
+    // Update the itinerary object with new values
+    itinerary.author = {
+      id: req.user._id,
+      username: req.user.username
+    };
+    itinerary.itineraryName = itineraryName;
+    itinerary.startingCity = startingCity;
+    itinerary.startDate = startDate;
+    itinerary.endDate = endDate;
+    itinerary.destinations = formattedDestinations;
 
-    // Save the new itinerary to the database
-    await itinerary.updateOne();
+    // Save the updated itinerary to the database
+    await itinerary.save();
 
-    res.status(201).redirect('/itinerary/view/:id');
+    res.status(200).redirect('/itinerary');
   } catch (error) {
-    res.status(500).json({ message: 'Failed to create itinerary', error: error.message });
+    res.status(500).json({ message: 'Failed to update itinerary', error: error.message });
   }
 });
 
