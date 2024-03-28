@@ -10,13 +10,13 @@
           <div class="col s6">
             <!-- Itinerary Name -->
             <div class="input-field">
-              <input id="itineraryName" type="text" class="validate" name="itineraryName" placeholder="<%= itinerary.itineraryName %>" required>
+              <input id="itineraryName" type="text" class="validate" name="itineraryName" value="<%= itinerary.itineraryName %>" required>
             </div>
           </div>
           <div class="col s6">
             <!-- Description -->
             <div class="input-field">
-              <input type="text" name="startingCity" placeholder="<%= itinerary.startingCity %>">
+              <input type="text" name="startingCity" value="<%= itinerary.startingCity %>">
             </div>
           </div>
         </div>
@@ -25,14 +25,14 @@
           <div class="col s6">
             <!-- Start Date -->
             <div class="input-field">
-              <input id="startDate" type="text" class="datepicker" name="startDate" placeholder="<%= itinerary.formattedStartDate %>" required>
+              <input id="startDate" type="text" class="datepicker" name="startDate" value="<%= itinerary.formattedStartDate %>" required>
             </div>
           </div>
 
           <div class="col s6">
             <!-- End Date -->
             <div class="input-field">
-              <input id="endDate" type="text" class="datepicker" name="endDate" placeholder="<%= itinerary.formattedEndDate %>" required>
+              <input id="endDate" type="text" class="datepicker" name="endDate" value="<%= itinerary.formattedEndDate %>" required>
             </div>
           </div>
         </div>
@@ -48,29 +48,29 @@
             <div class="row">
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][name]" placeholder="<%= destination.name %>" required>
+                  <input type="text" name="destinations[${destinationCounter - 1}][name]" value="<%= destination.name %>" required>
                 </div>
               </div>
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][transportation]" placeholder="<%= destination.transportation %>" required>
+                  <input type="text" name="destinations[${destinationCounter - 1}][transportation]" value="<%= destination.transportation %>" required>
                 </div>
               </div>
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][hotel]" placeholder="<%= destination.hotel %>" required>
+                  <input type="text" name="destinations[${destinationCounter - 1}][hotel]" value="<%= destination.hotel %>" required>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col s6">
                 <div class="input-field">
-                  <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][startDate]" placeholder="<%= destination.formattedStartDate %>" required>
+                  <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][startDate]" value="<%= destination.formattedStartDate %>" required>
                 </div>
               </div>
               <div class="col s6">
                 <div class="input-field">
-                  <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][endDate]" placeholder=" <%= destination.formattedEndDate %>" required>
+                  <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][endDate]" value=" <%= destination.formattedEndDate %>" required>
                 </div>
               </div>
             </div>
@@ -81,17 +81,17 @@
               <div class="activity row">
                 <div class="col s3">
                   <div class="input-field">
-                    <input type="text" name="destinations[${destinationCounter - 1}][activities][0][activityName]" placeholder="<%= activity.activityName %>" required>
+                    <input type="text" name="destinations[${destinationCounter - 1}][activities][0][activityName]" value="<%= activity.activityName %>" required>
                   </div>
                 </div>
                 <div class="col s3">
                   <div class="input-field">
-                    <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="<%= activity.formattedActivityDate %>" required>
+                    <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" value="<%= activity.formattedActivityDate %>" required>
                   </div>
                 </div>
                 <div class="col s3">
                 <div class="input-field">
-                  <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" placeholder="<%= activity.transportation %>" required>
+                  <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" value="<%= activity.transportation %>" required>
                 </div>
               </div>
                 <div class="col s2">
