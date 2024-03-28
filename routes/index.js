@@ -195,7 +195,7 @@ router.get('/itinerary/delete/:id', async (req, res) => {
   }
 });
 
-router.get('/itinerary/edit', async (req, res) => {
+router.get('/itinerary/edit/:id', async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
