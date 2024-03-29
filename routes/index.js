@@ -210,12 +210,6 @@ router.get('/itinerary/edit/:id', userAuth.checkLoggedIn, async (req, res) => {
 
 router.post('/itinerary/edit/:id', async (req, res) => {
   try {
-    // Retrieve the itinerary ID from the request parameters
-    const itineraryId = req.params.id;
-
-    // Find the itinerary in the database by its ID
-    const itinerary = await Itinerary.findById(itineraryId);
-
     // Extract data from req.body
     const { itineraryName, startingCity, startDate, endDate, destinations } = req.body;
 
@@ -237,19 +231,20 @@ router.post('/itinerary/edit/:id', async (req, res) => {
     }
 
     // Update the itinerary object with new values
-    itinerary.author = {
-      id: req.user._id,
-      username: req.user.username
-    };
-    itinerary.itineraryName = itineraryName;
-    itinerary.startingCity = startingCity;
-    itinerary.startDate = startDate;
-    itinerary.endDate = endDate;
-    itinerary.destinations = formattedDestinations;
-
-    // Save the updated itinerary to the database
-    await itinerary.save();
-
+    await Itinerary.updateOne({_id: req.params.id},
+      { $set: {
+          author: {
+            id: req.user._id,
+            username: req.user.username
+          },
+          "itineraryName" : itineraryName,
+          "startingCity" : startingCity,
+          "startDate" : startDate,
+          "endDate" : endDate,
+          "destinations" : formattedDestinations
+      }});
+      
+    // Redirect to the Itinerary Hub
     res.status(200).redirect('/itinerary');
   } catch (error) {
     res.status(500).json({ message: 'Failed to update itinerary', error: error.message });
