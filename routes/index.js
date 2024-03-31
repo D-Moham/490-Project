@@ -20,16 +20,31 @@ router.get('/profile', (req, res) => {
   res.render('profile', {displayName: displayName, username: username});
 })
 
-router.get('/profile/personal', (req,res) => {
+router.get('/profile/personal', userAuth.checkLoggedIn, (req,res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   let homeCity = req.user.homeCity;
   res.render('personal', {displayName: displayName, username: username, homeCity: homeCity});
 });
 
-router.get('/profile/preferences', (req,res) => {
-  res.render('preferences');
-});
+router.post('/profile/personal', async (req, res) => {
+  const { username, displayName, homeCity } = req.body;
+  
+  try {
+    // Update the itinerary object with new values
+    await User.updateOne({_id: req.user._id,},
+      { $set: {
+          "username" : username,
+          "displayName" : displayName,
+          "homeCity" : homeCity,
+      }});
+    
+    // Redirect to the Itinerary Hub
+    res.status(200).redirect('/profile/personal');
+  } catch {
+    res.status(500).json({ message: 'Failed to update personal information', error: error.message });
+  }
+})
 
 // Register Page
 router.get('/register', (req, res) => {

@@ -9,18 +9,16 @@
                     <%= displayName %>
                 </h5>
 
-                <form action="/action_page.php">
+                <form method="POST" action="/profile/personal">
                     <label for="displayName">Name:</label><br>
-                    <input class="center" type="text" id="displayName" name="displayName" value="<%= displayName %>" readonly>
+                    <input class="center" type="text" id="displayName" name="displayName" value="<%= displayName %>" autocomplete="off">
                     <label for="username">User Name:</label><br>
-                    <input class="center" type="text" id="username" name="username" value="<%= username %>" readonly>
+                    <input class="center" type="text" id="username" name="username" value="<%= username %>" autocomplete="off">
                     <label for="homeCity">Home City</label><br>
-                    <input class="center" type="text" id="homeCity" name="homeCity" value="<%= homeCity %>" readonly>
-                    <a class="waves-effect waves-light btn-large btn black">Change Personal Information & Password</a>
+                    <input class="center" type="text" id="homeCity" name="homeCity" value="<%= homeCity %>" autocomplete="off">
+                    <button class="waves-effect waves-light btn-large btn black" type="submit">Change Personal Information & Password</button>
                 </form>
             </div>
-
-            <script src="/public/scripts/change.js"></script>
 
         </body>
 
