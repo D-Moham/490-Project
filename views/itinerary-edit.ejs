@@ -102,7 +102,7 @@
                     <div class="input-field">
                       <select name="destinations[<%= index %>][activities][<%= activityIndex %>][transportation]">
                         <option value="<%= activity.transportation %>" disabled>Select Transportation</option>
-                        <option value="Flight" <%= activity.transportation === 'Flight' ? 'selected' : '' %>>Flight</option>
+                        <option value="Walk" <%= activity.transportation === 'Walk' ? 'selected' : '' %>>Walk</option>
                         <option value="Train" <%= activity.transportation === 'Train' ? 'selected' : '' %>>Train</option>
                         <option value="Bus" <%= activity.transportation === 'Bus' ? 'selected' : '' %>>Bus</option>
                         <option value="Taxi" <%= activity.transportation === 'Taxi' ? 'selected' : '' %>>Taxi</option>

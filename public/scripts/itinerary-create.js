@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="input-field">
               <select name="destinations[${destinationCounter - 1}][activities][0][transportation]">
                 <option value="" disabled selected>Select Transportation</option>
-                <option value="Flight">Flight</option>
+                <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
                 <option value="Bus">Bus</option>
                 <option value="Taxi">Taxi</option>
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="input-field">
               <select name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]">
                 <option value="" disabled selected>Select Transportation</option>
-                <option value="Flight">Flight</option>
+                <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
                 <option value="Bus">Bus</option>
                 <option value="Taxi">Taxi</option>
