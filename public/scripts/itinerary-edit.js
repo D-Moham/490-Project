@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
     minDate: new Date(),
   };
 
-  // Initialize datepickers for main form
-  var startDatePicker = document.getElementById('startDate');
-  var endDatePicker = document.getElementById('endDate');
-  M.Datepicker.init(startDatePicker, datepickerOptions);
-  M.Datepicker.init(endDatePicker, datepickerOptions);
+  // Initialize datepickers for main form and destinations and activities
+  var datepickers = document.querySelectorAll('.datepicker');
+  datepickers.forEach(function(datepicker) {
+    M.Datepicker.init(datepicker, datepickerOptions);
+  });
 
   // Function to update destination indexes
   function updateDestinationIndexes() {
