@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     minDate: new Date(),
   };
 
+  // Initialize dropdown
+  var select = document.querySelectorAll('select');
+  var instances = M.FormSelect.init(select, {});
+
   // Initialize datepickers for main form and destinations and activities
   var datepickers = document.querySelectorAll('.datepicker');
   datepickers.forEach(function(datepicker) {
@@ -48,12 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="row">
           <div class="col s4">
             <div class="input-field">
-              <input type="text" name="destinations[${destinationCounter - 1}][name]" placeholder="Name" required>
+              <input type="text" name="destinations[${destinationCounter - 1}][name]" placeholder="Name" class="autocomplete" required>
             </div>
           </div>
           <div class="col s4">
             <div class="input-field">
-              <input type="text" name="destinations[${destinationCounter - 1}][transportation]" placeholder="Type of Transit" required>
+              <select name="destinations[${destinationCounter - 1}][transportation]">
+                <option value="" disabled selected>Select Transportation</option>
+                <option value="Flight">Flight</option>
+                <option value="Train">Train</option>
+                <option value="Bus">Bus</option>
+                <option value="Taxi">Taxi</option>
+                <option value="Boat/Ferry">Boat/Ferry</option>
+              </select>
             </div>
           </div>
           <div class="col s4">
@@ -89,7 +100,14 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col s3">
               <div class="input-field">
-                <input type="text" name="destinations[${destinationCounter - 1}][activities][0][transportation]" placeholder="Transportation" required>
+                <select name="destinations[${destinationCounter - 1}][activities][0][transportation]">
+                  <option value="" disabled selected>Select Transportation</option>
+                  <option value="Flight">Flight</option>
+                  <option value="Train">Train</option>
+                  <option value="Bus">Bus</option>
+                  <option value="Taxi">Taxi</option>
+                  <option value="Boat/Ferry">Boat/Ferry</option>
+                </select>
               </div>
             </div>
             <div class="col s2">
@@ -106,6 +124,13 @@ document.addEventListener('DOMContentLoaded', function() {
     datepickers.forEach(function(datepicker) {
       M.Datepicker.init(datepicker, datepickerOptions);
     });
+
+    // Initialize dropdown
+    var select = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(select, {});
+
+    // Initialize autocomplete
+    autocompleteInit();
 
     // Update destination indexes
     updateDestinationIndexes();
@@ -143,7 +168,14 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="col s3">
             <div class="input-field">
-              <input type="text" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]" placeholder="Transportation" required>
+              <select name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]">
+                <option value="" disabled selected>Select Transportation</option>
+                <option value="Flight">Flight</option>
+                <option value="Train">Train</option>
+                <option value="Bus">Bus</option>
+                <option value="Taxi">Taxi</option>
+                <option value="Boat/Ferry">Boat/Ferry</option>
+              </select>
             </div>
           </div>
           <div class="col s3">
@@ -156,6 +188,10 @@ document.addEventListener('DOMContentLoaded', function() {
       // Initialize datepicker for the last dynamically added activity
       var datepicker = activitiesContainer.lastElementChild.querySelector('.datepicker');
       M.Datepicker.init(datepicker, datepickerOptions);
+
+      // Initialize dropdown
+      var select = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(select, {});
 
       // Update activity indexes
       updateActivityIndexes(destination);
