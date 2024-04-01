@@ -8,6 +8,14 @@ body {
   color: #000;
 }
 
+.year-text {
+  color: #000 !important;
+}
+
+.datepicker-controls input {
+  color: #000 !important;
+}
+
 /* Custom CSS for input field color change */
 .input-field input[type=text], .input-field input[type=number], input[type=text] {
   color: white; /* Set default text color */

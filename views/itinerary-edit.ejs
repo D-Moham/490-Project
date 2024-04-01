@@ -16,7 +16,7 @@
         <div class="col s6">
           <!-- Description -->
           <div class="input-field">
-            <input type="text" name="startingCity" value="<%= itinerary.startingCity %>" required>
+            <input type="text" name="startingCity" value="<%= itinerary.startingCity %>" class="autocomplete" required>
           </div>
         </div>
       </div>
@@ -47,12 +47,19 @@
             <div class="row">
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[<%= index %>][name]" value="<%= destination.name %>" required>
+                  <input type="text" name="destinations[<%= index %>][name]" value="<%= destination.name %>" class="autocomplete" required>
                 </div>
               </div>
               <div class="col s4">
                 <div class="input-field">
-                  <input type="text" name="destinations[<%= index %>][transportation]" value="<%= destination.transportation %>" required>
+                  <select name="destinations[<%= index %>][transportation]">
+                    <option value="<%= destination.transportation %>" disabled>Select Transportation</option>
+                    <option value="Flight" <%= destination.transportation === 'Flight' ? 'selected' : '' %>>Flight</option>
+                    <option value="Train" <%= destination.transportation === 'Train' ? 'selected' : '' %>>Train</option>
+                    <option value="Bus" <%= destination.transportation === 'Bus' ? 'selected' : '' %>>Bus</option>
+                    <option value="Taxi" <%= destination.transportation === 'Taxi' ? 'selected' : '' %>>Taxi</option>
+                    <option value="Boat/Ferry" <%= destination.transportation === 'Boat/Ferry' ? 'selected' : '' %>>Boat/Ferry</option>
+                  </select>
                 </div>
               </div>
               <div class="col s4">
@@ -93,7 +100,14 @@
                   </div>
                   <div class="col s3">
                     <div class="input-field">
-                      <input type="text" name="destinations[<%= index %>][activities][<%= activityIndex %>][transportation]" value="<%= activity.transportation %>" required>
+                      <select name="destinations[<%= index %>][activities][<%= activityIndex %>][transportation]">
+                        <option value="<%= activity.transportation %>" disabled>Select Transportation</option>
+                        <option value="Flight" <%= activity.transportation === 'Flight' ? 'selected' : '' %>>Flight</option>
+                        <option value="Train" <%= activity.transportation === 'Train' ? 'selected' : '' %>>Train</option>
+                        <option value="Bus" <%= activity.transportation === 'Bus' ? 'selected' : '' %>>Bus</option>
+                        <option value="Taxi" <%= activity.transportation === 'Taxi' ? 'selected' : '' %>>Taxi</option>
+                        <option value="Boat/Ferry" <%= activity.transportation === 'Boat/Ferry' ? 'selected' : '' %>>Boat/Ferry</option>
+                      </select>
                     </div>
                   </div>
                   <div class="col s3">
@@ -118,5 +132,6 @@
     </form>
   </div>
   <script src="/scripts/itinerary-edit.js"></script>
+  <script src="/scripts/cities.js"></script>
 </body>
 <link rel="stylesheet" href="/stylesheets/itinerary-create.css">
