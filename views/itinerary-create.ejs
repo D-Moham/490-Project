@@ -2,60 +2,63 @@
 <%- include('./partials/header') %>
 
 <body>
-    <div class="container">
-      <h5 class="white-text" type="center-align">Your Itinerary Starts Here!</h5>
-      <!-- CREATE FORM -->
-      <form action="/itinerary/create" method="POST">
-        <div class="row">
-          <div class="col s6">
-            <!-- Itinerary Name -->
-            <div class="input-field">
-              <input id="itineraryName" type="text" class="validate" name="itineraryName" placeholder="Trip Name" required>
-            </div>
-          </div>
-          <div class="col s6">
-            <!-- Description -->
-            <div class="input-field">
-              <input type="text" name="startingCity" placeholder="Starting City" class="autocomplete">
-            </div>
+  <div class="container">
+    <h5 class="white-text" type="center-align">Your Itinerary Starts Here!</h5>
+    <!-- CREATE FORM -->
+    <form action="/itinerary/create" method="POST">
+      <div class="row">
+        <div class="col s6">
+          <!-- Itinerary Name -->
+          <div class="input-field">
+            <input id="itineraryName" type="text" class="validate" name="itineraryName" placeholder="Trip Name" required>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col s6">
-            <!-- Start Date -->
-            <div class="input-field">
-              <input id="startDate" type="text" class="datepicker" name="startDate" placeholder="Start Date" required>
-            </div>
-          </div>
-
-          <div class="col s6">
-            <!-- End Date -->
-            <div class="input-field">
-              <input id="endDate" type="text" class="datepicker" name="endDate" placeholder="End Date" required>
-            </div>
+        <div class="col s6">
+          <!-- Description -->
+          <div class="input-field">
+            <input type="text" name="startingCity" placeholder="Starting City" class="autocomplete">
           </div>
         </div>
-      
-        <!-- Destinations -->
-        <div id="destinationsContainer">
-          <h5 class="white-text">Destinations</h5>
-          <!-- Destinations will be appended here from the Script -->
+      </div>
+
+      <div class="row">
+        <div class="col s6">
+          <!-- Start Date -->
+          <div class="input-field">
+            <input id="startDate" type="text" class="datepicker" name="startDate" placeholder="Start Date" required>
+          </div>
         </div>
 
-        <!-- Add Destination Button -->
-        <div class="form-group" id="addDestination">
-          <button class="waves-effect waves-dark btn" type="button">Add Destination</button>
+        <div class="col s6">
+          <!-- End Date -->
+          <div class="input-field">
+            <input id="endDate" type="text" class="datepicker" name="endDate" placeholder="End Date" required>
+          </div>
         </div>
+      </div>
+    
+      <!-- Destinations -->
+      <div id="destinationsContainer">
+        <h5 class="white-text">Destinations</h5>
+        <!-- Destinations will be appended here from the Script -->
+      </div>
 
-        <!-- Submit Button -->
-        <div class="form-group" id="submit">
-          <button style="color: black; margin-bottom: 3rem;" class="waves-effect waves-dark btn white">Create Itinerary</button>
-        </div>
-      </form>
+      <!-- Add Destination Button -->
+      <div class="form-group" id="addDestination">
+        <button class="waves-effect waves-dark btn" type="button">Add Destination</button>
+      </div>
 
-    </div>
-    <script src="/scripts/itinerary-create.js"></script>
-    <script src="/scripts/cities.js"></script>
-  </body>
-  <link rel="stylesheet" href="/stylesheets/itinerary-create.css">
+      <!-- Submit Button -->
+      <div class="form-group" id="submit">
+        <button style="color: black; margin-bottom: 3rem;" class="waves-effect waves-dark btn white">Create Itinerary</button>
+      </div>
+    </form>
+
+  </div>
+  <script src="/scripts/itinerary-create.js"></script>
+  <!-- This script is for the autofill functionality -->
+  <script src="/scripts/cities.js"></script>
+  <!-- Script for receiving add to your trip -->
+  <script src="/scripts/receive-city.js"></script>
+</body>
+<link rel="stylesheet" href="/stylesheets/itinerary-create.css">

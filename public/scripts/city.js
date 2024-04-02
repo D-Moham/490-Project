@@ -33,3 +33,9 @@ const loader = document.getElementById('loader');
 iframe.onload = function() {
   loader.style.display = 'none';
 };
+
+// Send user to the create page.
+document.getElementById('addToTripBtn').addEventListener('click', function() {
+  let cityName = document.getElementById('cityData').dataset.cityname;
+  window.location.href = '/itinerary/create?city=' + cityName;
+});
