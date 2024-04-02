@@ -118,7 +118,7 @@ router.get('/itinerary/create', userAuth.checkLoggedIn, (req, res) => {
 })
 
 // POST route to create a new itinerary
-router.post('/itinerary/create', async (req, res) => {
+router.post('/itinerary/create', userAuth.checkLoggedIn, async (req, res) => {
   try {
     // Extract user information
     const author = {
@@ -138,11 +138,11 @@ router.post('/itinerary/create', async (req, res) => {
         hotel: destination.hotel,
         startDate: destination.startDate,
         endDate: destination.endDate,
-        activities: destination.activities.map(activity => ({
+        activities: Array.isArray(destination.activities) ? destination.activities.map(activity => ({
           activityName: activity.activityName,
           activityDate: activity.activityDate,
           transportation: activity.transportation
-        }))
+        })) : [] // If activities array doesn't exist, return an empty array
       }));
     }
 
@@ -237,11 +237,11 @@ router.post('/itinerary/edit/:id', async (req, res) => {
         hotel: destination.hotel,
         startDate: destination.startDate,
         endDate: destination.endDate,
-        activities: destination.activities.map(activity => ({
+        activities: Array.isArray(destination.activities) ? destination.activities.map(activity => ({
           activityName: activity.activityName,
           activityDate: activity.activityDate,
           transportation: activity.transportation
-        }))
+        })) : [] // If activities array doesn't exist, return an empty array
       }));
     }
 
