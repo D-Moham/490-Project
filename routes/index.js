@@ -14,7 +14,7 @@ router.get('/tracker', (req, res) => {
   res.render('tracker');
 });
 
-router.get('/profile', (req, res) => {
+router.get('/profile', userAuth.checkLoggedIn, (req, res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   res.render('profile', {displayName: displayName, username: username});
@@ -27,7 +27,7 @@ router.get('/profile/personal', userAuth.checkLoggedIn, (req,res) => {
   res.render('personal', {displayName: displayName, username: username, homeCity: homeCity});
 });
 
-router.post('/profile/personal', async (req, res) => {
+router.post('/profile/personal', userAuth.checkLoggedIn, async (req, res) => {
   const { username, displayName, homeCity } = req.body;
   
   try {
