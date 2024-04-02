@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // invoke add destination button click
   document.getElementById('addDestination').click();
 
-  var destinationContainer = document.getElementById('destinationsContainer');
-  var inputFields = destinationContainer.getElementsByTagName('input');
-  if (inputFields.length > 0) {
-      inputFields[0].value = decodeURIComponent(cityName);
+  if (cityName) {
+    var destinationContainer = document.getElementById('destinationsContainer');
+    var inputFields = destinationContainer.getElementsByTagName('input');
+    if (inputFields.length > 0) {
+        inputFields[0].value = decodeURIComponent(cityName);
+    }
   }
 });
