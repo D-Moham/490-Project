@@ -137,6 +137,7 @@ let options = {
     "Orlando, Florida": null,
     "Washington, D.C.": null,
     "Seattle, Washington": null,
+    "Olympia, Washington": null,
     "Boston, Massachusetts": null,
     "San Diego, California": null,
     "Honolulu, Hawaii": null,
