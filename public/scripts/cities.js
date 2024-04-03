@@ -130,6 +130,7 @@ let options = {
     "New York City, New York": null,
     "Los Angeles, California": null,
     "Charlotte, North Carolina": null,
+    "Greensboro, North Carolina": null,
     "Chicago, Illinois": null,
     "San Francisco, California": null,
     "Las Vegas, Nevada": null,
