@@ -1,15 +1,17 @@
 const express = require('express');
+const axios = require('axios'); // Ensure axios is installed via npm
+const amtrak = require('amtrak'); // Ensure amtrak is installed via npm
 const app = express();
 const ejs = require('ejs');
 const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
-const User = require('./models/user');
-const indexRoutes = require('./routes/index');
+const User = require('./models/user'); // Make sure this path is correct
+const indexRoutes = require('./routes/index'); // Ensure this module is correctly set up
 
-// configure dotenv
 require('dotenv').config();
+
 
 // Database Connection 
 // assign mongoose promise library and connect to database
@@ -56,3 +58,58 @@ app.use('/', indexRoutes);
 app.listen(3000, function() {
   console.log('App is running on http://localhost:3000/');
 });
+
+app.get('/api/trains/:trainNumber', async (req, res) => {
+  try {
+    const trainNumber = req.params.trainNumber;
+    const response = await axios.get(`https://api-v3.amtraker.com/v3/trains/${trainNumber}`);
+
+    if (response.data && response.data[trainNumber] && response.data[trainNumber].length > 0) {
+      const trainData = response.data[trainNumber][0]; // Access the first element of the array
+      res.json({
+        latitude: trainData.lat,
+        longitude: trainData.lon
+      });
+    } else {
+      res.status(404).json({ message: "Train not found." });
+    }
+  } catch (error) {
+    console.error('Error fetching train data:', error);
+    res.status(500).json({ message: 'Error fetching train data' });
+  }
+});
+
+// Route to handle Aviationstack API requests for flight coordinates
+app.get('/api/flights/:flightIATA', async (req, res) => {
+  const flightIATA = req.params.flightIATA;
+  const params = {
+    access_key: process.env.AVIATIONSTACK_API_KEY,
+    flight_iata: flightIATA
+  };
+
+  try {
+    const response = await axios.get('http://api.aviationstack.com/v1/flights', { params });
+
+    if (response.data && response.data.data) {
+      const activeFlight = response.data.data.find(flight => flight.flight.iata === flightIATA && flight.flight_status === 'active');
+
+      if (activeFlight && activeFlight.live) {
+        res.json({
+          latitude: activeFlight.live.latitude,
+          longitude: activeFlight.live.longitude
+        });
+      } else {
+        res.status(404).json({ message: "Active flight not found for the provided IATA code." });
+      }
+    } else {
+      res.status(404).json({ message: "Flight not found." });
+    }
+  } catch (error) {
+    console.error('Error fetching flight data:', error);
+    res.status(500).json({ message: 'Error fetching flight data' });
+  }
+});
+
+
+
+

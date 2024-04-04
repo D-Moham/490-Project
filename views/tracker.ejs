@@ -1,9 +1,22 @@
 <%- include('./partials/head') %>
 <%- include('./partials/header') %>
 
-<body>
-  <div class="container">
-    <h4>Tracking Page</h4>
-  </div>
-</body>
+<div class="tracker-form container">
+  <h2>Enter ID to Track:</h2>
+  <form id="trackingForm">
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="trackerType" id="trainTracker" value="train" checked>
+      <label class="form-check-label" for="trainTracker">Train</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="trackerType" id="airlineTracker" value="airplane">
+      <label class="form-check-label" for="airlineTracker">Airplane</label>
+    </div>
+    <input type="text" id="trackingID" required placeholder="Enter Train or Flight ID" />
+    <button type="submit" id="trackButton" class="btn btn-primary">Track</button>
+  </form>
+  <div id="trackingResults"></div>
+</div>
+
+<script src="/scripts/tracker.js"></script>
 <link rel="stylesheet" href="/stylesheets/tracker.css">
