@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <option value="Flight">Flight</option>
               <option value="Train">Train</option>
               <option value="Bus">Bus</option>
-              <option value="Taxi">Taxi</option>
+              <option value="Taxi/Uber">Taxi/Uber</option>
               <option value="Boat/Ferry">Boat/Ferry</option>
             </select>
           </div>
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
                 <option value="Bus">Bus</option>
-                <option value="Taxi">Taxi</option>
+                <option value="Taxi/Uber">Taxi/Uber</option>
                 <option value="Boat/Ferry">Boat/Ferry</option>
               </select>
             </div>
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
                 <option value="Bus">Bus</option>
-                <option value="Taxi">Taxi</option>
+                <option value="Taxi/Uber">Taxi/Uber</option>
                 <option value="Boat/Ferry">Boat/Ferry</option>
               </select>
             </div>
