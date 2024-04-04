@@ -1,3 +1,4 @@
+//custom font settings
 @font-face {
   font-family: 'Lato';
   src: url('fonts/Lato/Lato-Regular.ttf') format('truetype');
@@ -73,6 +74,7 @@ h2 {
   background-color: #2980b9;
 }
 
+/* Tracking results display styling */
 #trackingResults {
   margin-top: 20px;
 }

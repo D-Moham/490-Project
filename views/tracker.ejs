@@ -1,6 +1,6 @@
 <%- include('./partials/head') %>
 <%- include('./partials/header') %>
-
+<!-- tracker form -->
 <div class="tracker-form container">
   <h2>Enter ID to Track:</h2>
   <form id="trackingForm">
@@ -15,8 +15,9 @@
     <input type="text" id="trackingID" required placeholder="Enter Train or Flight ID" />
     <button type="submit" id="trackButton" class="btn btn-primary">Track</button>
   </form>
+<!-- Results will be displayed here -->
   <div id="trackingResults"></div>
 </div>
-
+<!-- Attached the tracker script and stylesheet -->
 <script src="/scripts/tracker.js"></script>
 <link rel="stylesheet" href="/stylesheets/tracker.css">

@@ -1,8 +1,9 @@
-const express = require('express');
-const router = express.Router();
-const trainController = require('./trainController');
+const express = require('express'); // Import Express
+const router = express.Router(); // Create a new router
+const trainController = require('./trainController'); // Import the train controller
 
-// Keep the existing route as is
-router.get('/status/:trainNumber', trainController.getTrainStatus); 
+// Route that handles getting train status by number. 
+// It uses the getTrainStatus function from the train controller.
+router.get('/status/:trainNumber', trainController.getTrainStatus);
 
-module.exports = router;
+module.exports = router; // Export the router for use in other files
