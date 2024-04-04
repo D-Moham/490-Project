@@ -1,13 +1,19 @@
-const axios = require('axios'); // If you're already using axios, otherwise add this line.
-const amtrak = require('amtrak'); 
+const axios = require('axios'); // Import axios for making HTTP requests
 
+// Function to get the status of a train given a train number and origin date
 exports.getTrainStatus = async (req, res) => {
     try {
-        const trainId = `${req.params.trainNumber}-${req.query.originDate}`; // Assuming originDate in query string
+        // Construct the train ID using parameters from the request
+        const trainId = `${req.params.trainNumber}-${req.query.originDate}`;
+
+        // Fetch train data from the Amtrak API using the constructed train ID
         const trainData = await amtrak.fetchTrain(trainId);
+
+        // Send the train data as a JSON response
         res.json(trainData);
     } catch (error) {
-        console.error('Error fetching train data:', error); 
-        res.status(500).json({ message: 'Error fetching train data' }); 
+        // Log the error to the console and send a 500 error response
+        console.error('Error fetching train data:', error);
+        res.status(500).json({ message: 'Error fetching train data' });
     }
 };
