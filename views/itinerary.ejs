@@ -12,7 +12,7 @@
       <ul class="a" style="padding-right: 2rem;">
         <% itineraries.forEach(function(itinerary) { %>
           <li class="a">
-            <span class="itinerary-name"><%= itinerary.itineraryName %></span>
+            <h5 class="itinerary-name"><%= itinerary.itineraryName %></h5>
             <div class="button-container">
               <a href="/itinerary/<%= itinerary._id %>" class="button button-view">View</a>
               <a href="/itinerary/share/<%= itinerary._id%>" class="button button-share">Share</a>
