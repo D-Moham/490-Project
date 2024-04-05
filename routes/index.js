@@ -80,8 +80,23 @@ router.get('/login', (req, res) => {
 })
 
 // Handle login
-router.post('/login', passport.authenticate('local'), userAuth.checkLoggedIn, (req, res) => {
-  res.redirect('/');
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      // Authentication failed, redirect back to login page with error message
+      return res.render('login',  {message: info.message});
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      // Authentication successful, redirect to homepage
+      return res.redirect('/');
+    });
+  })(req, res, next);
 });
 
 // Handle logout

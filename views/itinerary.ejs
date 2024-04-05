@@ -9,13 +9,15 @@
     <!-- Check if array is empty or not -->
     <% if (itineraries.length > 0) { %>
       <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
-      <ul class="a" style="padding-right: 2rem;" font-size = "50px">
+      <ul class="a" style="padding-right: 2rem;">
         <% itineraries.forEach(function(itinerary) { %>
           <li class="a">
-            <%= itinerary.itineraryName %>
-            <a href="/itinerary/<%= itinerary._id %>" class="button button">View</a>
-            <a href="/itinerary/share/<%= itinerary._id%>" class="button button">Share</a>
-            <a href="/itinerary/delete/<%= itinerary._id %>" class="button button">Delete</a>
+            <h5 class="itinerary-name"><%= itinerary.itineraryName %></h5>
+            <div class="button-container">
+              <a href="/itinerary/<%= itinerary._id %>" class="button button-view">View</a>
+              <a href="/itinerary/share/<%= itinerary._id%>" class="button button-share">Share</a>
+              <a href="/itinerary/delete/<%= itinerary._id %>" class="button button-delete">Delete</a>
+            </div>
           </li>
         <% }); %>
       </ul>
