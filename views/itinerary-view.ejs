@@ -4,20 +4,21 @@
 <body>
     <div class="container center-align">
       <% if (itinerary) { %>
-        <h3><%= itinerary.itineraryName %></h3>
+        <h2><%= itinerary.itineraryName %></h3>
           <ul class = "a">
             <label class="a">Trip Start Date: <%= itinerary.formattedStartDate %> | Trip End Date: <%= itinerary.formattedEndDate %></label>
             <a href="/itinerary/edit/<%= itinerary._id %>" class="button button">Edit</a>
             <% itinerary.destinations.forEach(function(destination) { %>
-            <li class = "a">
-              <strong>City Name:</strong> <%= destination.name %> |
+              <h4><%= destination.name %> </h4>
+              <li class = "a">
+              <!--<strong>City Name:</strong> <%= destination.name %> |-->
               <strong>Transportation:</strong> <%= destination.transportation %> |
               <strong>Hotel:</strong> <%= destination.hotel %><br>
               <strong>Start Date:</strong> <%= destination.formattedStartDate %> |
               <strong>End Date:</strong> <%= destination.formattedEndDate %><br>
               <% if (destination.activities.length > 0) { %>
                 <ul class = "a">
-                  <strong>Activities:</strong>
+                  <h5>Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
                     <li class = "a">
                       <strong>Activity Name:</strong> <%= activity.activityName %><br>
