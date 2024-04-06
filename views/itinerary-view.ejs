@@ -21,11 +21,11 @@
                   <h5>Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
                     <ul class = "v">
-                      Activity Name: <%= activity.activityName %><br>
-                      Activity Date: <%= activity.formattedActivityDate %> <br>
-                      Transportation: <%= activity.transportation %><br>
+                      <%= activity.activityName %> <br>
+                      Date: <%= activity.formattedActivityDate %> |
+                      Transportation: <%= activity.transportation %>
                     </ul>
-                  <% }); %> <br>
+                  <% }); %> 
               <% } %>
               </li>
           <% }); %>
