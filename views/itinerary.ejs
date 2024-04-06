@@ -9,9 +9,9 @@
     <!-- Check if array is empty or not -->
     <% if (itineraries.length > 0) { %>
       <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
-      <ul class="a" style="padding-right: 2rem;">
+      <ul class="h" style="padding-right: 2rem;">
         <% itineraries.forEach(function(itinerary) { %>
-          <li class="a">
+          <li class="h">
             <h5 class="itinerary-name"><%= itinerary.itineraryName %></h5>
             <div class="button-container">
               <a href="/itinerary/<%= itinerary._id %>" class="button button-view">View</a>

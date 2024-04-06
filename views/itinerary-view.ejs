@@ -6,7 +6,7 @@
       <% if (itinerary) { %>
         <h2><%= itinerary.itineraryName %> <a href="/itinerary/edit/<%= itinerary._id %>" class="button button"style="font-size:xx-large;">Edit</a></h2>
           <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %></h5>
-          <ul class = "a">
+          <ul class = "v">
             <% itinerary.destinations.forEach(function(destination) { %>
               <h4><%= destination.name %> </h4>
               <h6> 
@@ -15,12 +15,12 @@
                 From: <%= destination.formattedStartDate %> to
                 <%= destination.formattedEndDate %><br>
               </h6>
-              <li class = "a">
+              <li class = "v">
               <!--<strong>City Name:</strong> <%= destination.name %> |-->
               <% if (destination.activities.length > 0) { %>
                   <h5>Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
-                    <ul class = "a">
+                    <ul class = "v">
                       Activity Name: <%= activity.activityName %><br>
                       Activity Date: <%= activity.formattedActivityDate %> <br>
                       Transportation: <%= activity.transportation %><br>

@@ -12,8 +12,27 @@ body {
   color: white;
 }
 
-/* Custom CSS for the lists */
-ul.a {
+/* Custom CSS for the lists 
+v is for the Itinerary View Page and h is for the Itinerary Hub
+*/
+ul.h {
+  background: rgba(75, 75, 75, 0.40);
+  list-style-type: none;
+  padding: 1.125rem 2rem;
+  margin: 0.625rem 6rem;
+  border-radius: 2.5rem!important;
+}
+ul li.h {
+  background: rgba(0, 0, 0, 0.25);
+  color: white;
+  padding: 1.25rem 2.5rem;
+  margin: 0.875rem 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 2.5rem!important;
+  font-size: 1.25rem;
+}
+ul.v {
   background: rgba(75, 75, 75, 0.40);
   list-style-type: none;
   padding: 1.125rem 2rem;
@@ -25,7 +44,7 @@ ul.a {
   border-radius: 2.5rem!important;
 }
 
-ul li.a {
+ul li.v {
   background: rgba(0, 0, 0, 0.25);
   color: white;
   padding: 1.25rem 2.5rem;
