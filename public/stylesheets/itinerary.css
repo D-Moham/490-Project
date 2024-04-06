@@ -18,6 +18,10 @@ ul.a {
   list-style-type: none;
   padding: 1.125rem 2rem;
   margin: 0.625rem 6rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  flex-flow: column wrap;
   border-radius: 2.5rem!important;
 }
 
@@ -28,7 +32,8 @@ ul li.a {
   margin: 0.875rem 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  flex-flow: column wrap;
   border-radius: 2.5rem!important;
   font-size: 1.25rem;
 }
