@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     format: 'mm-dd-yyyy',
     autoClose: true,
     minDate: new Date(),
+    onClose: function() {
+      datepickerClose();
+    }
   };
 
   // Initialize datepickers for main form
@@ -20,7 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var inputs = destination.querySelectorAll('input, select');
       inputs.forEach(function(input) {
         var name = input.getAttribute('name');
-        input.setAttribute('name', name.replace(/\[(\d+)\]/, '[' + index + ']'));
+        if (name !== null) {
+          input.setAttribute('name', name.replace(/\[(\d+)\]/, '[' + index + ']'));
+        }
       });
     });
   }
@@ -91,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col s3">
               <div class="input-field">
-                <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="Date of Activity" required>
+                <input type="text" class="datepicker activityDatePicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="Date of Activity" required>
               </div>
             </div>
             <div class="col s3">
@@ -120,6 +125,8 @@ document.addEventListener('DOMContentLoaded', function() {
     datepickers.forEach(function(datepicker) {
       M.Datepicker.init(datepicker, datepickerOptions);
     });
+
+    datepickerClose();
 
     // Initialize dropdown
     var select = document.querySelectorAll('select');
@@ -159,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="col s3">
             <div class="input-field">
-              <input type="text" class="datepicker" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityDate]" placeholder="Date of Activity" required>
+              <input type="text" class="datepicker activityDatePicker" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityDate]" placeholder="Date of Activity" required>
             </div>
           </div>
           <div class="col s3">
@@ -206,3 +213,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+function datepickerClose() {
+  let form = document.forms[0];
+  let startDate = form.querySelector('input[name="startDate"]');
+  let endDate = form.querySelector('input[name="endDate"');
+
+  if (startDate && endDate) {
+    let dynamicOptions = {
+      format: 'mm-dd-yyyy',
+      autoClose: true,
+      minDate: new Date(startDate.value),
+      maxDate: new Date(endDate.value),
+    };
+
+    // Select all input elements with names starting with "destinations" and ending with "[startDate]"
+    let destinationStartDates = document.querySelectorAll("input[name^='destinations'][name$='[startDate]']");
+    let destinationEndDates = document.querySelectorAll("input[name^='destinations'][name$='[endDate]']");
+
+    let activities = document.querySelectorAll(".activityDatePicker");
+
+    // Initialize Materialize datepickers for start dates
+    destinationStartDates.forEach(function(element) {
+      M.Datepicker.init(element, dynamicOptions);
+    });
+
+    // Initialize Materialize datepickers for end dates
+    destinationEndDates.forEach(function(element) {
+      M.Datepicker.init(element, dynamicOptions);
+    });
+
+    // For each activity
+    activities.forEach(function(element) {
+      M.Datepicker.init(element, dynamicOptions);
+    })
+  }
+}
