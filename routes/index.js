@@ -18,7 +18,7 @@ router.get('/profile', userAuth.checkLoggedIn, (req, res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   res.render('profile', {displayName: displayName, username: username});
-})
+});
 
 router.get('/profile/personal', userAuth.checkLoggedIn, (req,res) => {
   let displayName = req.user?.displayName;
@@ -44,6 +44,10 @@ router.post('/profile/personal', userAuth.checkLoggedIn, async (req, res) => {
   } catch {
     res.status(500).json({ message: 'Failed to update personal information', error: error.message });
   }
+});
+
+router.get('/profile/trips', userAuth.checkLoggedIn, (req,res) => {
+  res.render('trips')
 })
 
 // Register Page
