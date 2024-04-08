@@ -196,6 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
       var select = document.querySelectorAll('select');
       var instances = M.FormSelect.init(select, {});
 
+      // Call to update dates
+      datepickerClose();
+
       // Update activity indexes
       updateActivityIndexes(destination);
     }
