@@ -53,35 +53,38 @@ router.get('/profile/trips', userAuth.checkLoggedIn, (req,res) => {
 
 // Register Page
 router.get('/register', (req, res) => {
-    res.render('register')
+  res.render('register')
 })
 
 // Handle sign-up
 router.post('/register', (req, res) => {
-    // Save New User
-    const { username, displayName, homeCity } = req.body;
-    
-    const newUser = new User({ 
-      username: username,
-      displayName: displayName,
-      homeCity: homeCity
-    });
+  // Save New User
+  const { username, displayName, homeCity } = req.body;
+  
+  const newUser = new User({ 
+    username: username,
+    displayName: displayName,
+    homeCity: homeCity
+  });
 
-    User.register(newUser, req.body.password, (err, user) => {
-      if (err) {
-        console.log(err);
-        return res.render('register', { error: err.message });
+  User.register(newUser, req.body.password, (err, user) => {
+    if (err) {
+      // Check if the error is due to non-unique username
+      if (err.name === 'MongoError' && err.code === 11000) {
+        return res.render('register', { message: 'Username already exists' });
       }
+      return res.render('register', { message: err.message });
+    }
 
-      passport.authenticate('local')(req, res, () => {
-        res.redirect('/');
-      })
-    })
+    passport.authenticate('local')(req, res, () => {
+      res.redirect('/');
+    });
+  });
 })
 
 // Login Page
 router.get('/login', (req, res) => {
-    res.render('login')
+  res.render('login')
 })
 
 // Handle login

@@ -1,6 +1,19 @@
 <%- include('./partials/head') %>
 <%- include('./partials/header') %>
 <body>
+    <% if(typeof(message) != "undefined") { %>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Toast function
+                function showToast(message) {
+                    M.toast({html: message, displayLength: 2000});
+                }
+                // Call toast function with the message
+                showToast('<%= message %>');
+            });
+        </script>
+    <% } %>
+
 	<div class="row">
         <h4 style="text-align: center">Create your account</h4>
         <div style="width: 30%; margin: 25px auto;">

@@ -21,3 +21,11 @@ body {
 input {
   color: white;
 }
+
+#toast-container {
+  top: auto !important;
+  right: auto !important;
+  bottom: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+}
