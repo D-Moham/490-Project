@@ -24,7 +24,8 @@ router.get('/profile/personal', userAuth.checkLoggedIn, (req,res) => {
   let displayName = req.user?.displayName;
   let username = req.user?.username;
   let homeCity = req.user.homeCity;
-  res.render('personal', {displayName: displayName, username: username, homeCity: homeCity});
+  const message = req.query.message;
+  res.render('personal', {displayName: displayName, username: username, homeCity: homeCity, message: message});
 });
 
 router.post('/profile/personal', userAuth.checkLoggedIn, async (req, res) => {
@@ -40,7 +41,7 @@ router.post('/profile/personal', userAuth.checkLoggedIn, async (req, res) => {
       }});
     
     // Redirect to the Itinerary Hub
-    res.status(200).redirect('/profile/personal');
+    res.status(200).redirect('/profile/personal?message=Information+Updated+Successfully');
   } catch {
     res.status(500).json({ message: 'Failed to update personal information', error: error.message });
   }
