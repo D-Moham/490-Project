@@ -47,8 +47,17 @@ router.post('/profile/personal', userAuth.checkLoggedIn, async (req, res) => {
   }
 });
 
-router.get('/profile/trips', userAuth.checkLoggedIn, (req,res) => {
-  res.render('trips')
+router.get('/profile/trips', userAuth.checkLoggedIn, async (req,res) => {
+  // res.render('trips')
+
+  // Retrieve the current user's ID from the request object
+  const userId = req.user._id;
+
+  // Query the database to find all itineraries where the author's ID matches the current user's ID
+  const userItineraries = await Itinerary.find({ 'author.id': userId });
+
+  // Render the page with the user itineraries
+  res.render('trips', { itineraries: userItineraries });
 })
 
 // Register Page

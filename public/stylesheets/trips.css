@@ -16,6 +16,12 @@ body {
     color: white;
 }
 
+h2{
+    text-align: center;
+    margin-top: 2rem;
+    line-height: 4;
+}
+
 h4 {
     text-align: center;
     margin-bottom: 1rem;
@@ -30,6 +36,7 @@ h4 {
     border-radius: 15px;
     position: absolute;
     top: 50%;
+    bottom: auto;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
