@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   };
 
+  // Display required css for select options
+  requireSelect();
+
   // Initialize datepickers for main form
   var startDatePicker = document.getElementById('startDate');
   var endDatePicker = document.getElementById('endDate');
@@ -58,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
 
           <div class="input-field col s4">
-            <select name="destinations[${destinationCounter - 1}][transportation]">
+            <select name="destinations[${destinationCounter - 1}][transportation]" required>
               <option value="" disabled selected>Select Transportation</option>
               <option value="Flight">Flight</option>
               <option value="Train">Train</option>
@@ -101,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col s3">
             <div class="input-field">
-              <select name="destinations[${destinationCounter - 1}][activities][0][transportation]">
+              <select name="destinations[${destinationCounter - 1}][activities][0][transportation]" required>
                 <option value="" disabled selected>Select Transportation</option>
                 <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
@@ -127,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     datepickerClose();
+
+    // Display required css for select options
+    requireSelect();
 
     // Initialize dropdown
     var select = document.querySelectorAll('select');
@@ -171,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="col s3">
             <div class="input-field">
-              <select name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]">
+              <select name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]" required>
                 <option value="" disabled selected>Select Transportation</option>
                 <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
@@ -198,6 +204,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Call to update dates
       datepickerClose();
+      
+      // Display required css for select options
+      requireSelect();
 
       // Update activity indexes
       updateActivityIndexes(destination);
@@ -228,6 +237,9 @@ function datepickerClose() {
       autoClose: true,
       minDate: new Date(startDate.value),
       maxDate: new Date(endDate.value),
+      onClose: function() {
+        datepickerClose();
+      }
     };
 
     // Select all input elements with names starting with "destinations" and ending with "[startDate]"
@@ -247,8 +259,48 @@ function datepickerClose() {
     });
 
     // For each activity
-    activities.forEach(function(element) {
-      M.Datepicker.init(element, dynamicOptions);
-    })
+    activities.forEach(function(activity) {
+      // Find the destination that the activity belongs to
+      let destination = activity.closest('.destination');
+      let destinationStartDateInput = destination.querySelector('input[name$="[startDate]"]');
+      let destinationEndDateInput = destination.querySelector('input[name$="[endDate]"]');
+
+      if (destinationStartDateInput && destinationEndDateInput) {
+        // Set min and max dates for the activity based on the destination's start and end dates
+        let activityDynamicOptions = {
+          format: 'mm-dd-yyyy',
+          autoClose: true,
+          minDate: new Date(destinationStartDateInput.value),
+          maxDate: new Date(destinationEndDateInput.value),
+        };
+
+        // Initialize Materialize datepicker for the activity
+        M.Datepicker.init(activity, activityDynamicOptions);
+      }
+    });
   }
+}
+
+function requireSelect() {
+  // Select all <select> elements and initialize them as form selects
+  var selectElements = document.querySelectorAll('select');
+  selectElements.forEach(function(selectElement) {
+    M.FormSelect.init(selectElement);
+  });
+
+  // Select all <select> elements with the "required" attribute and apply CSS styles
+  var requiredSelectElements = document.querySelectorAll('select[required]');
+  requiredSelectElements.forEach(function(requiredSelectElement) {
+    requiredSelectElement.style.display = 'inline';
+    requiredSelectElement.style.position = 'absolute';
+    requiredSelectElement.style.float = 'left';
+    requiredSelectElement.style.padding = '0';
+    requiredSelectElement.style.margin = '0';
+    requiredSelectElement.style.border = '1px solid rgba(255,255,255,0)';
+    requiredSelectElement.style.height = '0';
+    requiredSelectElement.style.width = '0';
+    requiredSelectElement.style.top = '3em';
+    requiredSelectElement.style.left = '7.5em';
+    requiredSelectElement.style.opacity = '0';
+  });
 }
