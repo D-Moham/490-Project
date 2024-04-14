@@ -3,17 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
     format: 'mm-dd-yyyy',
     autoClose: true,
     minDate: new Date(),
+    onClose: function() {
+      datepickerClose();
+    }
   };
-
-  // Initialize dropdown
-  var select = document.querySelectorAll('select');
-  var instances = M.FormSelect.init(select, {});
+  // Display required css for select options
+  requireSelect();
 
   // Initialize datepickers for main form and destinations and activities
   var datepickers = document.querySelectorAll('.datepicker');
   datepickers.forEach(function(datepicker) {
     M.Datepicker.init(datepicker, datepickerOptions);
   });
+  
+  datepickerClose();
 
   // Function to update destination indexes
   function updateDestinationIndexes() {
@@ -118,6 +121,17 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     `;
     document.getElementById('destinationsContainer').insertAdjacentHTML('beforeend', destinationHTML);
+    
+    // Initialize datepickers for dynamically added destinations
+    var datepickers = document.querySelectorAll('.datepicker');
+    datepickers.forEach(function(datepicker) {
+      M.Datepicker.init(datepicker, datepickerOptions);
+    });
+
+    datepickerClose();
+
+    // Display required css for select options
+    requireSelect();
 
     // Initialize datepickers for dynamically added destinations
     var datepickers = document.querySelectorAll('.datepicker');
@@ -193,6 +207,12 @@ document.addEventListener('DOMContentLoaded', function() {
       var select = document.querySelectorAll('select');
       var instances = M.FormSelect.init(select, {});
 
+      // Call to update dates
+      datepickerClose();
+      
+      // Display required css for select options
+      requireSelect();
+
       // Update activity indexes
       updateActivityIndexes(destination);
     }
@@ -210,3 +230,82 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+function datepickerClose() {
+  let form = document.forms[0];
+  let startDate = form.querySelector('input[name="startDate"]');
+  let endDate = form.querySelector('input[name="endDate"');
+
+  if (startDate && endDate) {
+    let dynamicOptions = {
+      format: 'mm-dd-yyyy',
+      autoClose: true,
+      minDate: new Date(startDate.value),
+      maxDate: new Date(endDate.value),
+      onClose: function() {
+        datepickerClose();
+      }
+    };
+
+    // Select all input elements with names starting with "destinations" and ending with "[startDate]"
+    let destinationStartDates = document.querySelectorAll("input[name^='destinations'][name$='[startDate]']");
+    let destinationEndDates = document.querySelectorAll("input[name^='destinations'][name$='[endDate]']");
+
+    let activities = document.querySelectorAll(".activityDatePicker");
+
+    // Initialize Materialize datepickers for start dates
+    destinationStartDates.forEach(function(element) {
+      M.Datepicker.init(element, dynamicOptions);
+    });
+
+    // Initialize Materialize datepickers for end dates
+    destinationEndDates.forEach(function(element) {
+      M.Datepicker.init(element, dynamicOptions);
+    });
+
+    // For each activity
+    activities.forEach(function(activity) {
+      // Find the destination that the activity belongs to
+      let destination = activity.closest('.destination');
+      let destinationStartDateInput = destination.querySelector('input[name$="[startDate]"]');
+      let destinationEndDateInput = destination.querySelector('input[name$="[endDate]"]');
+
+      if (destinationStartDateInput && destinationEndDateInput) {
+        // Set min and max dates for the activity based on the destination's start and end dates
+        let activityDynamicOptions = {
+          format: 'mm-dd-yyyy',
+          autoClose: true,
+          minDate: new Date(destinationStartDateInput.value),
+          maxDate: new Date(destinationEndDateInput.value),
+        };
+
+        // Initialize Materialize datepicker for the activity
+        M.Datepicker.init(activity, activityDynamicOptions);
+      }
+    });
+  }
+}
+
+function requireSelect() {
+  // Select all <select> elements and initialize them as form selects
+  var selectElements = document.querySelectorAll('select');
+  selectElements.forEach(function(selectElement) {
+    M.FormSelect.init(selectElement);
+  });
+
+  // Select all <select> elements with the "required" attribute and apply CSS styles
+  var requiredSelectElements = document.querySelectorAll('select[required]');
+  requiredSelectElements.forEach(function(requiredSelectElement) {
+    requiredSelectElement.style.display = 'inline';
+    requiredSelectElement.style.position = 'absolute';
+    requiredSelectElement.style.float = 'left';
+    requiredSelectElement.style.padding = '0';
+    requiredSelectElement.style.margin = '0';
+    requiredSelectElement.style.border = '1px solid rgba(255,255,255,0)';
+    requiredSelectElement.style.height = '0';
+    requiredSelectElement.style.width = '0';
+    requiredSelectElement.style.top = '3em';
+    requiredSelectElement.style.left = '7.5em';
+    requiredSelectElement.style.opacity = '0';
+  });
+}
