@@ -1,38 +1,46 @@
 <%- include('./partials/head') %>
-<%- include('./partials/header') %>
+  <%- include('./partials/header') %>
 
-<body>
-    <div class="container center-align">
-      <% if (itinerary) { %>
-        <h2><%= itinerary.itineraryName %> <a href="/itinerary/edit/<%= itinerary._id %>" class="button button"style="font-size:xx-large;">Edit</a></h2>
-          <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %></h5>
-          <ul class = "v">
+    <body>
+      <div class="container center-align">
+        <% if (itinerary) { %>
+          <h2 style="display: flex; align-items: center; justify-content: center;">
+            <span style="flex: 1;">
+              <%= itinerary.itineraryName %>
+              <a href="/itinerary/edit/<%= itinerary._id %>" class="button button" style="font-size: x-large;">Edit</a>
+            </span>
+          </h2>
+          <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %>
+          </h5>
+          <ul class="v">
             <% itinerary.destinations.forEach(function(destination) { %>
-              <h4><%= destination.name %> </h4>
-              <h6> 
+              <h4>
+                <%= destination.name %>
+              </h4>
+              <h6>
                 Transportation: <%= destination.transportation %> |
-                Hotel: <%= destination.hotel %> |
-                From: <%= destination.formattedStartDate %> to
-                <%= destination.formattedEndDate %><br>
+                  Hotel: <%= destination.hotel %> |
+                    From: <%= destination.formattedStartDate %> to
+                      <%= destination.formattedEndDate %><br>
               </h6>
-              <li class = "v">
-              <!--<strong>City Name:</strong> <%= destination.name %> |-->
-              <% if (destination.activities.length > 0) { %>
+              <li class="v">
+                <!--<strong>City Name:</strong> <%= destination.name %> |-->
+                <% if (destination.activities.length> 0) { %>
                   <h5>Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
-                    <ul class = "v">
+                    <ul class="v">
                       <%= activity.activityName %> <br>
-                      Date: <%= activity.formattedActivityDate %> |
-                      Transportation: <%= activity.transportation %>
+                        Date: <%= activity.formattedActivityDate %> |
+                          Transportation: <%= activity.transportation %>
                     </ul>
-                  <% }); %> 
-              <% } %>
+                    <% }); %>
+                      <% } %>
               </li>
-          <% }); %>
-        </ul>
-      <% } else { %>
-        <p>No itinerary found.</p>
-      <% } %>
-    </div>
-  </body>
-  <link rel="stylesheet" href="/stylesheets/itinerary.css">
+              <% }); %>
+          </ul>
+          <% } else { %>
+            <p>No itinerary found.</p>
+            <% } %>
+      </div>
+    </body>
+    <link rel="stylesheet" href="/stylesheets/itinerary.css">

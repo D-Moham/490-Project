@@ -72,6 +72,7 @@ ul li.v {
   color: black;
   background-color: white;
   padding: 0.5rem 0.625rem;
+  vertical-align: middle;
   text-align: center;
   text-decoration: none;
   font-size: 1.25rem;
