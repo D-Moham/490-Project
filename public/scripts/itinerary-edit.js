@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="col s4">
             <div class="input-field">
-              <select name="destinations[${destinationCounter - 1}][transportation]">
+              <select name="destinations[${destinationCounter - 1}][transportation]" required>
                 <option value="" disabled selected>Select Transportation</option>
                 <option value="Flight">Flight</option>
                 <option value="Train">Train</option>
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col s3">
               <div class="input-field">
-                <select name="destinations[${destinationCounter - 1}][activities][0][transportation]">
+                <select name="destinations[${destinationCounter - 1}][activities][0][transportation]" required>
                   <option value="" disabled selected>Select Transportation</option>
                   <option value="Walk">Walk</option>
                   <option value="Train">Train</option>
@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="col s3">
             <div class="input-field">
-              <select name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]">
+              <select name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][transportation]" required>
                 <option value="" disabled selected>Select Transportation</option>
                 <option value="Walk">Walk</option>
                 <option value="Train">Train</option>
