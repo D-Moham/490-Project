@@ -81,38 +81,26 @@ app.get('/api/trains/:trainNumber', async (req, res) => {
 app.get('/api/flights/:flightIATA', async (req, res) => {
   const flightIATA = req.params.flightIATA;
   const params = {
-        // Set parameters for the Aviationstack API request
-    access_key: process.env.AVIATIONSTACK_API_KEY,
+    access_key: process.env.AVIATIONSTACK_API_KEY, // Make sure this key is set in your environment variables
     flight_iata: flightIATA
   };
 
   try {
-        // Make a GET request to the Aviationstack API to retrieve flight data
     const response = await axios.get('http://api.aviationstack.com/v1/flights', { params });
-// Check if the response has the flight data
-    if (response.data && response.data.data) {
-      const activeFlight = response.data.data.find(flight => flight.flight.iata === flightIATA && flight.flight_status === 'active');
-// Find an active flight that matches the IATA code
-      if (activeFlight && activeFlight.live) {
-        res.json({
-              // Respond with the latitude and longitude of the flight
-          latitude: activeFlight.live.latitude,
-          longitude: activeFlight.live.longitude
-        });
-            //catch any possible errors which may come about from ivalid IDs, or down API
+    if (response.data && response.data.data && response.data.data.length > 0) {
+      const flightData = response.data.data.find(flight => flight.flight.iata === flightIATA);
+      if (flightData) {
+        res.json(flightData);
       } else {
-        res.status(404).json({ message: "Active flight not found for the provided IATA code." });
+        res.status(404).send('Flight data not found.');
       }
     } else {
-      res.status(404).json({ message: "Flight not found." });
+      res.status(404).send('No flight data available.');
     }
-        // Log and respond with error information
   } catch (error) {
     console.error('Error fetching flight data:', error);
-    res.status(500).json({ message: 'Error fetching flight data' });
+    res.status(500).send('Server error when fetching flight data.');
   }
 });
-
-
 
 
