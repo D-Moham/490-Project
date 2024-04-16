@@ -3,22 +3,46 @@
 
 
         <body>
-            <!-- <h2>Trips</h2> -->
             <div class="bg-text container">
 
 
                 <h3>Trip History</h3>
                 <hr>
-                <% itineraries.forEach(function(itinerary) { %>
+
                     <div class="container">
-                        <h5>
-                            <%= itinerary.itineraryName %>
-                        </h5>
+                    <h4>Past Trips</h4>
+
+                    <% pastItineraries.forEach(itinerary => { %>
+                        <h5><a href="/itinerary"><%= itinerary.name %></a></h5>
                         <p>
-                            <%= itinerary.formattedStartDate %>
+                            Starting City: <%= itinerary.startingCity %> <br>
+                            Destination City: <%= itinerary.destinations[0].name %><br>
+                            <%= itinerary.startDate %> - <%= itinerary.endDate %>
                         </p>
-                    </div>
                     <% }); %>
+
+                    <h4>Current Trips</h4>
+
+                    <% currentItineraries.forEach(itinerary => { %>
+                        <h5><a href="/itinerary"><%= itinerary.name %></a></h5>
+                        <p>
+                            Starting City: <%= itinerary.startingCity %> <br>
+                            Destination City: <%= itinerary.destinations[0].name %><br>
+                            <%= itinerary.startDate %> - <%= itinerary.endDate %>
+                        </p>
+                    <% }); %>
+
+                    <h4>Future Trips</h4>
+
+                        <% futureItineraries.forEach(itinerary => { %>
+                            <h5><a href="/itinerary"><%= itinerary.name %></a></h5>
+                            <p>
+                                Starting City: <%= itinerary.startingCity %> <br>
+                                Destination City: <%= itinerary.destinations[0].name %><br>
+                                <%= itinerary.startDate %> - <%= itinerary.endDate %>
+                            </p>
+                        <% }); %>
+
 
                         <br>
 
