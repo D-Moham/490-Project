@@ -62,16 +62,12 @@ app.listen(3000, function() {
 app.get('/api/trains/:trainNumber', async (req, res) => {
   try {
     const trainNumber = req.params.trainNumber;
-        // Make a GET request to the Amtrak API to retrieve train data
     const response = await axios.get(`https://api-v3.amtraker.com/v3/trains/${trainNumber}`);
-// Check if the response has the train data
-    if (response.data && response.data[trainNumber] && response.data[trainNumber].length > 0) {
-      const trainData = response.data[trainNumber][0]; // Access the first element of the array
-      res.json({
-        latitude: trainData.lat,
-        longitude: trainData.lon
-      });
-      //catch any possible errors which may come about from ivalid IDs, or down API
+
+    // Assuming the response from the API is similar to the structure of the BODY in your example:
+    if (response.data && response.data[trainNumber]) {
+      // Send back the entire object as received from the Amtrak API
+      res.json(response.data[trainNumber]);
     } else {
       res.status(404).json({ message: "Train not found." });
     }
