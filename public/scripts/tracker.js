@@ -1,22 +1,17 @@
-// Listen for the form submission event and prevent the default form submission behavior
 document.getElementById('trackingForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
-  // Get the selected tracker type (train or airplane) and the input ID
   const trackerType = document.querySelector('input[name="trackerType"]:checked').value;
   const inputID = document.getElementById('trackingID').value.trim();
   const resultsDiv = document.getElementById('trackingResults');
 
-  // Alert if the ID input field is empty
   if (!inputID) {
     alert('Please enter a flight or train identifier.');
     return;
   }
 
-  // Display a loading message while data is being fetched
-  resultsDiv.innerHTML = '<p>Loading...</p>'; 
+  resultsDiv.innerHTML = '<p>Loading...</p>';
 
-  // Determine which API to call based on the selected tracker type
   if (trackerType === 'train') {
     fetchAmtrakData(inputID, resultsDiv);
   } else if (trackerType === 'airplane') {
@@ -26,58 +21,61 @@ document.getElementById('trackingForm').addEventListener('submit', function(even
   }
 });
 
-// Function to fetch train data from the server
+// Fetch train data from the server using Amtrak API
 async function fetchAmtrakData(trainNumber, resultsDiv) {
     try {
         const response = await fetch(`/api/trains/${trainNumber}`);
-        if(response.ok) {
-            const trainData = await response.json();
-            // Display the train data in resultsDiv, focusing on coordinates
-            resultsDiv.innerHTML = `<p>Train Coordinates: Latitude ${trainData.latitude}, Longitude ${trainData.longitude}</p>`;
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const trainDataArray = await response.json();
+        if (trainDataArray.length > 0) {
+          // Now we are expecting an array, take the first item for display
+          const trainData = trainDataArray[0];
+          displayTrainData(trainData, resultsDiv);
         } else {
-            resultsDiv.innerHTML = '<p>Train data not found or error in response.</p>';
+          resultsDiv.innerHTML = '<p>Train data not found.</p>';
         }
     } catch (error) {
+        console.error('Error retrieving train data:', error);
         resultsDiv.innerHTML = '<p>Error retrieving train data. Please try again.</p>';
     }
 }
 
-// Function to fetch flight data from the server
+
+// Function to display train data in the DOM
+function displayTrainData(trainData, resultsDiv) {
+    const { routeName, trainTimely, origName, destName, lat, lon, stations } = trainData;
+    const status = stations[stations.length - 1].status;
+    const enrouteOrStation = status === "Enroute" ? "En route" : `At station: ${stations[stations.length - 1].name}`;
+
+    resultsDiv.innerHTML = `
+        <p>Train Coordinates: Latitude ${parseFloat(lat).toFixed(2)}, Longitude ${parseFloat(lon).toFixed(2)}</p>
+        <p>Route: ${routeName}</p>
+        <p>Delay: ${trainTimely}</p>
+        <p>Origin: ${origName}</p>
+        <p>Destination: ${destName}</p>
+        <p>Status: ${enrouteOrStation}</p>
+    `;
+}
+
+// Function to fetch flight data from the server using Aviationstack API
 async function fetchAviationStackData(flightIATA, resultsDiv) {
   try {
     const response = await fetch(`/api/flights/${flightIATA}`);
-    if(response.ok) {
-        const flightData = await response.json();
-        if(flightData && flightData.latitude !== undefined && flightData.longitude !== undefined) {
-            // Display the flight data in resultsDiv, focusing on coordinates
-            resultsDiv.innerHTML = `<p>Flight Coordinates: Latitude ${flightData.latitude}, Longitude ${flightData.longitude}</p>`;
-        } else {
-            resultsDiv.innerHTML = '<p>Flight coordinates not found in the response.</p>';
-        }
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const flightData = await response.json();
+    if (flightData && flightData.latitude !== undefined && flightData.longitude !== undefined) {
+        displayPlaneData(flightData, resultsDiv);
     } else {
-        resultsDiv.innerHTML = `<p>Error retrieving flight data: ${response.statusText}</p>`;
+        resultsDiv.innerHTML = '<p>Flight coordinates not found in the response.</p>';
     }
   } catch (error) {
+    console.error('Error retrieving flight data:', error);
     resultsDiv.innerHTML = '<p>Error retrieving flight data. Please try again.</p>';
   }
-}
-
-
-
-//both these functions are placeholders for more functionality
-function displayTrainData(trainData, container) {
-  // Assuming the latitude and longitude are always in the last 'stations' entry
-  const lastStation = trainData['20'][0].stations[trainData['20'][0].stations.length - 1]; 
-
-  const div = document.createElement('div');
-  div.className = 'tracking-info';
-  div.innerHTML = `
-    <p>Train ID: ${trainData['20'][0].trainID || 'Unavailable'}</p>
-    <p>Current Location: Latitude ${lastStation.lat || 'Unavailable'}, Longitude ${lastStation.lon || 'Unavailable'}</p>
-    <p>Status: ${lastStation.trainTimely || 'Unavailable'}</p>
-    <p>Next Station: ${lastStation.name || 'Unavailable'}</p>
-    `;
-  container.appendChild(div);
 }
 
 function displayPlaneData(planeData, container) {
@@ -97,3 +95,4 @@ function displayPlaneData(planeData, container) {
   `;
   container.appendChild(div);
 }
+
