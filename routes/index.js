@@ -56,8 +56,29 @@ router.get('/profile/trips', userAuth.checkLoggedIn, async (req,res) => {
   // Query the database to find all itineraries where the author's ID matches the current user's ID
   const userItineraries = await Itinerary.find({ 'author.id': userId });
 
+  // Get today's date
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for accurate comparison
+
+  // Arrays to store past, current, and future itineraries
+  const pastItineraries = [];
+  const currentItineraries = [];
+  const futureItineraries = [];
+
+  // Iterate through itineraries and categorize them based on today's date/ also passes itinerary attributes
+  userItineraries.forEach(itinerary => {
+    if (itinerary.endDate < today) {
+      pastItineraries.push({ name: itinerary.itineraryName, startDate: itinerary.formattedStartDate, endDate: itinerary.formattedEndDate, startingCity: itinerary.startingCity, destinations: itinerary.destinations });
+    } else if (itinerary.startDate <= today && itinerary.endDate >= today) {
+      currentItineraries.push({ name: itinerary.itineraryName, startDate: itinerary.formattedStartDate, endDate: itinerary.formattedEndDate, startingCity: itinerary.startingCity, destinations: itinerary.destinations });
+    } else {
+      futureItineraries.push({ name: itinerary.itineraryName, startDate: itinerary.formattedStartDate, endDate: itinerary.formattedEndDate, startingCity: itinerary.startingCity, destinations: itinerary.destinations });
+    }
+  });
+  
+
   // Render the page with the user itineraries
-  res.render('trips', { itineraries: userItineraries });
+  res.render('trips', { itinerary:userItineraries, pastItineraries: pastItineraries, currentItineraries: currentItineraries, futureItineraries: futureItineraries });
 })
 
 // Register Page
