@@ -1,0 +1,45 @@
+<%- include('./partials/head') %>
+  <%- include('./partials/header') %>
+
+    <body>
+      <div class="container center-align">
+        <% if (itinerary) { %>
+          <h2 style="display: flex; align-items: center; justify-content: center;">
+            <span style="flex: 1;">
+              <%= itinerary.itineraryName %>
+            </span>
+          </h2>
+          <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %>
+          </h5>
+          <ul class="v">
+            <% itinerary.destinations.forEach(function(destination) { %>
+              <h4>
+                <%= destination.name %>
+              </h4>
+              <h6>
+                Transportation: <%= destination.transportation %> |
+                  Hotel: <%= destination.hotel %> |
+                    From: <%= destination.formattedStartDate %> to
+                      <%= destination.formattedEndDate %><br>
+              </h6>
+              <li class="v">
+                <!--<strong>City Name:</strong> <%= destination.name %> |-->
+                <% if (destination.activities.length> 0) { %>
+                  <h5>Activities</h5>
+                  <% destination.activities.forEach(function(activity) { %>
+                    <ul class="v">
+                      <%= activity.activityName %> <br>
+                        Date: <%= activity.formattedActivityDate %> |
+                          Transportation: <%= activity.transportation %>
+                    </ul>
+                    <% }); %>
+                      <% } %>
+              </li>
+              <% }); %>
+          </ul>
+          <% } else { %>
+            <p>No itinerary found.</p>
+            <% } %>
+      </div>
+    </body>
+    <link rel="stylesheet" href="/stylesheets/itinerary.css">
