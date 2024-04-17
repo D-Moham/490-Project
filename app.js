@@ -9,9 +9,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user'); // Make sure this path is correct
 const indexRoutes = require('./routes/index'); // Ensure this module is correctly set up
+const session = require('express-session');
 
 require('dotenv').config();
-
 
 // Database Connection 
 // assign mongoose promise library and connect to database
@@ -26,11 +26,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
 // PASSPORT CONFIGURATION
-app.use(require("express-session")({
-  secret: "Very secret message",
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(session({ resave: true , secret: '123456' , saveUninitialized: true}));
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(function(user, done) {
