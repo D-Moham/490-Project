@@ -319,4 +319,46 @@ router.post('/itinerary/edit/:id', async (req, res) => {
   }
 });
 
+// GET route to share an itinerary
+router.get('/itinerary/share/:id', userAuth.checkLoggedIn, async (req, res) => {
+  try {
+    // Retrieve the itinerary ID from the request parameters
+    const itineraryId = req.params.id;
+
+    // Find the itinerary in the database by its ID
+    const itinerary = await Itinerary.findById(itineraryId);
+
+    // Check if the itinerary exists
+    if (!itinerary) {
+      return res.status(404).send('Itinerary not found');
+    }
+
+    // Render a page to display the details of the itinerary
+    res.render('itinerary-share', { itinerary });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
+  }
+});
+
+// GET route to view a shared itinerary
+router.get('/itinerary/share/view/:id', userAuth.checkLoggedIn, async (req, res) => {
+  try {
+    // Retrieve the itinerary ID from the request parameters
+    const itineraryId = req.params.id;
+
+    // Find the itinerary in the database by its ID
+    const itinerary = await Itinerary.findById(itineraryId);
+
+    // Check if the itinerary exists
+    if (!itinerary) {
+      return res.status(404).send('Itinerary not found');
+    }
+
+    // Render a page to display the details of the itinerary
+    res.render('itinerary-share-view', { itinerary });
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
+  }
+});
+
 module.exports = router;
