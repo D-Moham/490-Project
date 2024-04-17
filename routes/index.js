@@ -341,7 +341,7 @@ router.get('/itinerary/share/:id', userAuth.checkLoggedIn, async (req, res) => {
 });
 
 // GET route to view a shared itinerary
-router.get('/itinerary/share/view/:id', userAuth.checkLoggedIn, async (req, res) => {
+router.get('/itinerary/share/view/:id', async (req, res) => {
   try {
     // Retrieve the itinerary ID from the request parameters
     const itineraryId = req.params.id;
