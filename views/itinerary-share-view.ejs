@@ -6,7 +6,7 @@
         <% if (itinerary) { %>
           <h2 style="display: flex; align-items: center; justify-content: center;">
             <span style="flex: 1;">
-              <%= itinerary.itineraryName %>
+              <%= itinerary.itineraryName %> by <%= itinerary.author.username %><br> 
             </span>
           </h2>
           <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %>
@@ -40,6 +40,7 @@
           <% } else { %>
             <p>No itinerary found.</p>
             <% } %>
+          <h4>This Itinerary was created by <%= itinerary.author.username %></h4>
       </div>
     </body>
     <link rel="stylesheet" href="/stylesheets/itinerary.css">
