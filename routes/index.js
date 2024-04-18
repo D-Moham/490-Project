@@ -232,8 +232,13 @@ router.get('/itinerary/:id', userAuth.checkLoggedIn, async (req, res) => {
       return res.status(404).send('Itinerary not found');
     }
 
-    // Render a page to display the details of the itinerary
-    res.render('itinerary-view', { itinerary });
+    if (itinerary.author.id == req.user.id) {
+      // Render a page to display the details of the itinerary
+      res.render('itinerary-view', { itinerary });
+    } else {
+      // Send a 404 error response
+      res.status(404).send('You do not have access to that!');
+    }
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
   }
