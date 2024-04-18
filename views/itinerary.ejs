@@ -1,15 +1,29 @@
 <%- include('./partials/head') %>
-<%- include('./partials/header') %>
+  <%- include('./partials/header') %>
 
-<body>
-  <div class="container center-align">
-   <!-- <h4>Itinerary Page</h4> -->
-    <h5 class="white-text" type="center-align" style="font-size:xx-large;">Welcome to the Itinerary Hub!</h5>
+    <body>
+      <div class="container center-align">
+        <!-- <h4>Itinerary Page</h4> -->
+        <h5 class="white-text" type="center-align" style="font-size:xx-large;">Welcome to the Itinerary Hub!</h5>
 
-    <!-- Check if array is empty or not -->
-    <% if (itineraries.length > 0) { %>
-      <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
-      <ul class="h" style="padding-right: 2rem;">
+        <!-- Check if array is empty or not -->
+        <% if (itineraries.length> 0) { %>
+          <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
+          <div class="h">
+            <% itineraries.forEach(function(itinerary) { %>
+              <div class="hh">
+                <h5 class="itinerary-name">
+                  <%= itinerary.itineraryName %>
+                </h5>
+                <div class="button-container">
+                  <a href="/itinerary/<%= itinerary._id %>" class="button button-view">View</a>
+                  <a href="/itinerary/share/<%= itinerary._id%>" class="button button-share">Share</a>
+                  <a href="/itinerary/delete/<%= itinerary._id %>" class="button button-delete">Delete</a>
+                </div>
+              </div>
+              <% }); %>
+          </div>
+          <!-- <ul class="h" style="padding-right: 2rem;">
         <% itineraries.forEach(function(itinerary) { %>
           <li class="h">
             <h5 class="itinerary-name"><%= itinerary.itineraryName %></h5>
@@ -19,17 +33,17 @@
               <a href="/itinerary/delete/<%= itinerary._id %>" class="button button-delete">Delete</a>
             </div>
           </li>
-        <% }); %>
-      </ul>
-      <p type="center-align" style="font-size:x-large;">Start Another Itinerary! Click the Button Below:</p>
-    <% } else { %>
-      <h2>No itineraries found.</h2>
-      <p type="center-align" style="font-size:x-large;">Get Started! Click the Button Below:</p>
-    <% } %>
+        <% }); %> 
+      </ul> -->
+          <p type="center-align" style="font-size:x-large;">Start Another Itinerary! Click the Button Below:</p>
+          <% } else { %>
+            <h2>No itineraries found.</h2>
+            <p type="center-align" style="font-size:x-large;">Get Started! Click the Button Below:</p>
+            <% } %>
 
-    <a href="itinerary/create">
-      <button class="button button" style = "width:60%;">Create A New Itinerary</button>
-    </a>
-  </div>
-</body>
-<link rel="stylesheet" href="/stylesheets/itinerary.css">
+              <a href="itinerary/create">
+                <button class="button button" style="width:60%;">Create A New Itinerary</button>
+              </a>
+      </div>
+    </body>
+    <link rel="stylesheet" href="/stylesheets/itinerary.css">
