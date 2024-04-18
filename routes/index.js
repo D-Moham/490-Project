@@ -237,7 +237,7 @@ router.get('/itinerary/:id', userAuth.checkLoggedIn, async (req, res) => {
       res.render('itinerary-view', { itinerary });
     } else {
       // Send a 404 error response
-      res.status(404).send('You do not have access to that!');
+      res.status(404).send('You cannot view this itinerary on this page because you are not the author of it!');
     }
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch itinerary', error: error.message });
@@ -275,7 +275,13 @@ router.get('/itinerary/edit/:id', userAuth.checkLoggedIn, async (req, res) => {
 
     // Find the itinerary in the database by its ID
     const itinerary = await Itinerary.findById(itineraryId);
-    res.render('itinerary-edit', { itinerary });
+    if (itinerary.author.id == req.user.id) {
+      // Render a page to display the details of the itinerary
+      res.render('itinerary-edit', { itinerary });
+    } else {
+      // Send a 404 error response
+      res.status(404).send('You do not have editing privileges because you are not the author of this itinerary!');
+    }
   }   catch (error) {
     res.status(500).json({ message: 'Failed to fetch itinerary for edit', error: error.message });
   }
