@@ -7,12 +7,12 @@
           <h2 style="display: flex; align-items: center; justify-content: center;">
             <span style="flex: 1;">
               <%= itinerary.itineraryName %>
-              <a href="/itinerary/edit/<%= itinerary._id %>" class="button button" style="font-size: large;">Edit</a>
+                <a href="/itinerary/edit/<%= itinerary._id %>" class="button button" style="font-size: large;">Edit</a>
             </span>
           </h2>
           <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %>
           </h5>
-          <ul class="v">
+          <div class="v">
             <% itinerary.destinations.forEach(function(destination) { %>
               <h4>
                 <%= destination.name %>
@@ -23,21 +23,22 @@
                     From: <%= destination.formattedStartDate %> to
                       <%= destination.formattedEndDate %><br>
               </h6>
-              <li class="v">
+              <div class="vv">
                 <!--<strong>City Name:</strong> <%= destination.name %> |-->
                 <% if (destination.activities.length> 0) { %>
                   <h5>Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
-                    <ul class="v">
+                    <div class="v">
                       <%= activity.activityName %> <br>
                         Date: <%= activity.formattedActivityDate %> |
                           Transportation: <%= activity.transportation %>
-                    </ul>
-                  <% }); %>
-                <% } %>
-              </li>
-            <% }); %>
-          </ul>
+                    </div>
+                    <% }); %>
+                      <% } %>
+              </div>
+              <% }); %>
+          </div>
+
           <% } else { %>
             <p>No itinerary found.</p>
             <% } %>
