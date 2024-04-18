@@ -132,7 +132,7 @@ router.post('/login', (req, res, next) => {
         return next(err);
       }
       // Authentication successful, redirect to homepage
-      return res.redirect('/');
+      return res.redirect('/itinerary');
     });
   })(req, res, next);
 });
