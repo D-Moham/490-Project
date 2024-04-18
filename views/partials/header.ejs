@@ -28,21 +28,21 @@
 </nav>
 
 <!-- Mobile Navigation -->
-<ul class="sidenav" id="mobile-nav">
+<ul class="sidenav" id="mobile-nav" style="background-color: rgba(0, 0, 0, 0.25);">
   <!-- Left-aligned links -->
-  <li><a href="/">TechTravel</a></li>
-  <li><a href="/itinerary">Itineraries</a></li>
-  <li><a href="/tracker">Transit Tracker</a></li>
+  <li><a href="/"style="color: white;">TechTravel Itinerary</a></li>
+  <li><a href="/itinerary"style="color: white;">Itineraries</a></li>
+  <li><a href="/tracker"style="color: white;">Transit Tracker</a></li>
   <li><a href="/"><i class="material-icons">search</i></a></li>
   <!-- Right-aligned buttons -->
   <% if (isAuthenticated) { %>
     <!-- Display logout button -->
-    <li><a href="/profile">Profile</a></li>
-    <li><a href="/logout">Logout</a></li>
+    <li><a href="/profile"style="color: white;">Profile</a></li>
+    <li><a href="/logout"style="color: white;">Logout</a></li>
   <% } else { %>
     <!-- Display login/signup buttons -->
-    <li><a href="/login">Login</a></li>
-    <li><a href="/register">Sign Up</a></li>
+    <li><a href="/login"style="color: white;">Login</a></li>
+    <li><a href="/register"style="color: white;">Sign Up</a></li>
   <% } %>
 </ul>
 
