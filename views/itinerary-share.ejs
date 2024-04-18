@@ -2,10 +2,10 @@
   <%- include('./partials/header') %>
 
   <body>
-    <div class="container center-align">
+    <div class="center-align">
         <h2>Itinerary Share Page</h2>
         <h4> Share Link For: <%= itinerary.itineraryName %></h4>
-        <h4><a href="/itinerary/share/view/<%= itinerary._id%>">https://techtravelitinerary.com/itinerary/share/view/<%= itinerary._id%></a></h4>
+        <h4 style="text-align: center;"><a href="/itinerary/share/view/<%= itinerary._id%>" target="_blank">https://techtravelitinerary.com/itinerary/share/view/<%= itinerary._id%></a></h4>
     </div>
   </body>
   <link rel="stylesheet" href="/stylesheets/itinerary.css">
