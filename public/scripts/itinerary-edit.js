@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="col s3">
               <div class="input-field">
-                <input type="text" class="datepicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="Date of Activity" required>
+                <input type="text" class="datepicker activityDatePicker" name="destinations[${destinationCounter - 1}][activities][0][activityDate]" placeholder="Date of Activity" required>
               </div>
             </div>
             <div class="col s3">
@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="col s3">
             <div class="input-field">
-              <input type="text" class="datepicker" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityDate]" placeholder="Date of Activity" required>
+              <input type="text" class="datepicker activityDatePicker" name="destinations[${destination.dataset.index - 1}][activities][${activityCounter}][activityDate]" placeholder="Date of Activity" required>
             </div>
           </div>
           <div class="col s3">

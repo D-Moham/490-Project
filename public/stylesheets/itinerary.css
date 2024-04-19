@@ -15,14 +15,14 @@ body {
 /* Custom CSS for the lists 
 v is for the Itinerary View Page and h is for the Itinerary Hub
 */
-ul.h {
+div.h {
   background: rgba(75, 75, 75, 0.40);
   list-style-type: none;
   padding: 1.125rem 2rem;
   margin: 0.625rem 6rem;
   border-radius: 2.5rem!important;
 }
-ul li.h {
+div.hh {
   background: rgba(0, 0, 0, 0.25);
   color: white;
   padding: 1.25rem 2.5rem;
@@ -33,15 +33,11 @@ ul li.h {
   font-size: 1.25rem;
 }
 
-/* div h4{
-  text-align: right;
-} */
-
 div.v {
   background: rgba(75, 75, 75, 0.40);
   list-style-type: none;
-  padding: 1.125rem 2rem;
-  margin: 0.625rem 6rem;
+  padding: auto;
+  margin: auto;
   display: flex;
   justify-content: space-evenly;
   /* align-items: baseline; */
@@ -60,6 +56,17 @@ div.vv {
   flex-flow: column wrap;
   border-radius: 2.5rem!important;
   font-size: 1.25rem;
+}
+
+div.vvv {
+  background: rgba(75, 75, 75, 0.40);
+  padding: auto;
+  margin: 0.875rem 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  /* align-items: baseline; */
+  flex-flow: column wrap;
+  border-radius: 3rem!important;
 }
 
 .itinerary-name {
@@ -100,4 +107,8 @@ div.vv {
 .button:hover {
   background-color: #04AA6D;
   color: white;
+}
+
+footer{
+  margin-top: 20px;
 }
