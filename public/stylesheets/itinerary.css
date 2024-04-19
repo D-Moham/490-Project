@@ -67,9 +67,15 @@ div.vv {
 }
 
 .button-container {
-  margin-left: auto;
-  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
   gap: 1rem; /* Adjusted gap */
+}
+
+.darken{
+  padding: .5rem 2rem;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 2.5rem!important;
 }
 
 .button {
