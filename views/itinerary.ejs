@@ -9,7 +9,6 @@
         <!-- Check if array is empty or not -->
         <% if (itineraries.length> 0) { %>
           <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
-
           <ul class="h" style="padding-right: 2rem;">
             <% itineraries.forEach(function(itinerary) { %>
               <!-- <li class="h"> -->
@@ -19,30 +18,18 @@
                   <%= itinerary.itineraryName %>
                 </h5>
 
-
                 <div class="button-container">
                   <a href="/itinerary/<%= itinerary._id %>" class="button button-view">View</a>
                   <a href="/itinerary/share/<%= itinerary._id%>" class="button button-share">Share</a>
                   <a href="/itinerary/delete/<%= itinerary._id %>" class="button button-delete">Delete</a>
 
-
                 </div>
 
               </div>
-              <!-- <h5 class="itinerary-name"><%= itinerary.itineraryName %></h5>
-            <hr>
 
-            <div class="button-container">
-              <a href="/itinerary/<%= itinerary._id %>" class="button button-view">View</a>
-              <a href="/itinerary/share/<%= itinerary._id%>" class="button button-share">Share</a>
-              <a href="/itinerary/delete/<%= itinerary._id %>" class="button button-delete">Delete</a>
-
-            </div> -->
-              <!-- </li> -->
               <% }); %>
                 <hr>
           </ul>
-
           <p type="center-align" style="font-size:x-large;">Start Another Itinerary! Click the Button Below:</p>
           <% } else { %>
             <h2>No itineraries found.</h2>
