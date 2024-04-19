@@ -58,6 +58,7 @@ h2 {
   border: 1px solid #34495e;
   border-radius: 4px;
   box-sizing: border-box;
+  color: white;
 }
 
 #trackButton {
