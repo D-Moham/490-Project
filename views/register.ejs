@@ -17,12 +17,12 @@
 	<div class="row">
         <h4 style="text-align: center">Create your account</h4>
         <div style="width: 30%; margin: 25px auto;">
-            <form action="/register" method="post">
+            <form action="/register" method="post" onsubmit="return validatePassword()">
                 <div class="form-group">
                     <input class="form-control" type="text" name="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    <input id="password" class="form-control" type="password" name="password" placeholder="Password" required>
                 </div>
                 
                 <div id="displayName" class="form-group">
@@ -45,4 +45,17 @@
     <link rel="stylesheet" href="/stylesheets/register.css">
 </body>
 
-<script src="/scripts/register.js"></script>
+<script>
+    document.getElementById("password").addEventListener("input", function() {
+        validatePassword();
+    });
+
+    function validatePassword() {
+        var password = document.getElementById("password").value;
+        if (password.length < 8) {
+            document.getElementById("password").setCustomValidity("Password must be at least 8 characters long");
+        } else {
+            document.getElementById("password").setCustomValidity("");
+        }
+    }
+</script>
