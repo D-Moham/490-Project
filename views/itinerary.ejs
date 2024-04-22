@@ -9,10 +9,10 @@
         <!-- Check if array is empty or not -->
         <% if (itineraries.length> 0) { %>
           <p type="center-align" style="font-size:x-large;">Current Itineraries Are Below:</p>
-          <ul class="h" style="padding-right: 2rem;">
+          <div class="h" style="padding-right: 2rem;">
             <% itineraries.forEach(function(itinerary) { %>
               <!-- <li class="h"> -->
-              <li class="h">
+              <div class="hh">
                 <h5 class="itinerary-name">
                   <%= itinerary.itineraryName %>
                 </h5>
@@ -21,10 +21,10 @@
                   <a href="/itinerary/share/<%= itinerary._id%>" class="button button-share">Share</a>
                   <a href="/itinerary/delete/<%= itinerary._id %>" class="button button-delete">Delete</a>
                 </div>
-              </li>
+              </div>
 
               <% }); %>
-          </ul>
+          </div>
           <p type="center-align" style="font-size:x-large;">Start Another Itinerary! Click the Button Below:</p>
           <% } else { %>
             <h2>No itineraries found.</h2>
