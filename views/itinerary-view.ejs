@@ -14,7 +14,7 @@
             From: <%= itinerary.startingCity %> <br> 
             Start: <%= itinerary.formattedStartDate %> | End: <%= itinerary.formattedEndDate %>
           </h5>
-          <ul class="v">
+          <div class="v">
             <% itinerary.destinations.forEach(function(destination) { %>
               <h4>
                 To: <%= destination.name %>
@@ -25,21 +25,21 @@
                     From: <%= destination.formattedStartDate %> to
                       <%= destination.formattedEndDate %><br>
               </h6>
-              <ul class="vv">
+              <div class="vv">
                 <!--<strong>City Name:</strong> <%= destination.name %> |-->
                 <% if (destination.activities.length> 0) { %>
                   <h5 class="v">Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
-                    <li class="v">
+                    <div class="vvv">
                       <%= activity.activityName %> <br>
-                      Date: <%= activity.formattedActivityDate %> <br>
+                      Date: <%= activity.formattedActivityDate %> |
                       Transportation: <%= activity.transportation %>
-                    </li>
+                    </div>
                   <% }); %>
                 <% } %>
-              </ul>
+                  </div>
               <% }); %>
-          </ul>
+            </div>
 
           <% } else { %>
             <p>No itinerary found.</p>
