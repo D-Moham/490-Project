@@ -7,14 +7,15 @@
           <h2 style="display: flex; align-items: center; justify-content: center;">
             <span style="flex: 1;">
               <%= itinerary.itineraryName %> by <%= itinerary.author.username %><br>
+              From: <%= itinerary.startingCity %>
             </span>
           </h2>
           <h5>From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %>
           </h5>
-          <div class="v">
+          <ul class="v">
             <% itinerary.destinations.forEach(function(destination) { %>
               <h4>
-                <%= destination.name %>
+                To: <%= destination.name %>
               </h4>
               <h6>
                 Transportation: <%= destination.transportation %> |
@@ -22,21 +23,21 @@
                     From: <%= destination.formattedStartDate %> to
                       <%= destination.formattedEndDate %><br>
               </h6>
-              <div class="vv">
+              <ul class="vv">
                 <!--<strong>City Name:</strong> <%= destination.name %> |-->
                 <% if (destination.activities.length> 0) { %>
                   <h5>Activities</h5>
                   <% destination.activities.forEach(function(activity) { %>
-                    <div class="vvv">
+                    <li class="v">
                       <%= activity.activityName %> <br>
                         Date: <%= activity.formattedActivityDate %> |
                           Transportation: <%= activity.transportation %>
-                    </div>
+                    </li>
                     <% }); %>
                       <% } %>
-                  </div>
+                  </ul>
               <% }); %>
-            </div>
+          </ul>
           <% } else { %>
             <p>No itinerary found.</p>
             <% } %>
