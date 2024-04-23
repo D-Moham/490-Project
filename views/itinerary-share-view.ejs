@@ -11,13 +11,13 @@
           </h2>
           <h5>
             From: <%= itinerary.startingCity %> <br>
-            From: <%= itinerary.formattedStartDate %> to <%= itinerary.formattedEndDate %>
+            Start: <%= itinerary.formattedStartDate %> | End: <%= itinerary.formattedEndDate %>
           </h5>
           <div class="v">
             <% itinerary.destinations.forEach(function(destination) { %>
               <h4>
                 To: <%= destination.name %>
-              </h4>
+              </h4><br>
               <h6>
                 Transportation: <%= destination.transportation %> |
                   Hotel: <%= destination.hotel %> |
