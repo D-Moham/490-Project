@@ -3,16 +3,20 @@
 
   <body>
     <div class="container center-align">
-        <div class="v" style="margin-top: 5%;">
+        <div class="h" style="margin-top: 5%;">
           <h4> Share Link For: <%= itinerary.itineraryName %></h4>
-          <div class="vv">
-            <div class= "link-container"></div>
-              <a href="/itinerary/share/view/<%= itinerary._id%>" class = "link">
-                https://techtravelitinerary.com/itinerary/share/view/<%= itinerary._id%>
-              </a>
+          <div class="hh">
+            <input type="text" value="https://techtravelitinerary.com/itinerary/share/view/<%= itinerary._id%>" id="link">
+              <div class="tooltip">
+                <button onclick="myFunction()" onmouseout="outFunc()" class="button" >
+                  <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                  Copy
+                </button>
+              </div>
+              <a href="/itinerary/share/view/<%= itinerary._id%>" class = "button button">Test</a>
             </div>
-          </div>
         </div>
     </div>
+    <script src="/scripts/itinerary-share.js"></script>
   </body>
   <link rel="stylesheet" href="/stylesheets/itinerary.css">
