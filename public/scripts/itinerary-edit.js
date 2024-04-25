@@ -121,23 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     `;
     document.getElementById('destinationsContainer').insertAdjacentHTML('beforeend', destinationHTML);
-    
-    // Initialize datepickers for dynamically added destinations
-    var datepickers = document.querySelectorAll('.datepicker');
-    datepickers.forEach(function(datepicker) {
-      M.Datepicker.init(datepicker, datepickerOptions);
-    });
 
     datepickerClose();
 
     // Display required css for select options
     requireSelect();
-
-    // Initialize datepickers for dynamically added destinations
-    var datepickers = document.querySelectorAll('.datepicker');
-    datepickers.forEach(function(datepicker) {
-      M.Datepicker.init(datepicker, datepickerOptions);
-    });
 
     // Initialize dropdown
     var select = document.querySelectorAll('select');
@@ -199,10 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
       activitiesContainer.insertAdjacentHTML('beforeend', activityHTML);
 
-      // Initialize datepicker for the last dynamically added activity
-      var datepicker = activitiesContainer.lastElementChild.querySelector('.datepicker');
-      M.Datepicker.init(datepicker, datepickerOptions);
-
       // Initialize dropdown
       var select = document.querySelectorAll('select');
       var instances = M.FormSelect.init(select, {});
@@ -242,6 +226,7 @@ function datepickerClose() {
       autoClose: true,
       minDate: new Date(startDate.value),
       maxDate: new Date(endDate.value),
+      defaultDate: new Date(startDate.value),
       onClose: function() {
         datepickerClose();
       }
@@ -277,6 +262,7 @@ function datepickerClose() {
           autoClose: true,
           minDate: new Date(destinationStartDateInput.value),
           maxDate: new Date(destinationEndDateInput.value),
+          defaultDate: new Date(destinationStartDateInput.value),
         };
 
         // Initialize Materialize datepicker for the activity

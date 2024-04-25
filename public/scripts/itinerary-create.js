@@ -231,12 +231,28 @@ function datepickerClose() {
   let startDate = form.querySelector('input[name="startDate"]');
   let endDate = form.querySelector('input[name="endDate"');
 
+  let startDatePicker = document.getElementById('startDate');
+  if (startDatePicker) {
+    // Set minimum and month for the trip end date selector as well
+    let endDatePicker = document.getElementById('endDate');
+    M.Datepicker.init(endDatePicker, {
+      format: 'mm-dd-yyyy',
+      autoClose: true,
+      minDate: new Date(startDate.value),
+      defaultDate: new Date(startDate.value),
+      onClose: function() {
+        datepickerClose();
+      }
+    });
+  }
+
   if (startDate && endDate) {
     let dynamicOptions = {
       format: 'mm-dd-yyyy',
       autoClose: true,
       minDate: new Date(startDate.value),
       maxDate: new Date(endDate.value),
+      defaultDate: new Date(startDate.value),
       onClose: function() {
         datepickerClose();
       }
@@ -272,6 +288,7 @@ function datepickerClose() {
           autoClose: true,
           minDate: new Date(destinationStartDateInput.value),
           maxDate: new Date(destinationEndDateInput.value),
+          defaultDate: new Date(destinationStartDateInput.value),
         };
 
         // Initialize Materialize datepicker for the activity
