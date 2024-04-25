@@ -13,8 +13,9 @@ const foods = 'https://www.yelp.com/search?find_desc=Dinner+And+Drinks&find_loc=
 document.querySelector('.foods').src = foods;
 
 // Construct the attractions recommendations
-const attractions = `https://www.yelp.com/search?find_desc=Attractions&find_loc=${encodeURIComponent(cityName)}`;
-document.querySelector('.attractions').src = attractions;
+const wiki = `https://en.wikivoyage.org/wiki/${encodeURIComponent(cityName)}`
+document.querySelector('.attractions').src = wiki;
+document.getElementById('view-wiki').href = wiki;
 
 // Setting up the tabs
 let el = document.querySelector('.tabs');
