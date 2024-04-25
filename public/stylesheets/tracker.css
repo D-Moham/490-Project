@@ -18,7 +18,7 @@ body {
   max-width: 600px;
   margin: 50px auto;
   padding: 20px;
-  background: #2c3e50;
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -38,13 +38,13 @@ h2 {
 }
 
 .form-check-input:checked + .form-check-label {
-  background-color: #3498db;
-  color: white;
+  background-color: #00c97f;
+  color: black;
 }
 
 .form-check-label {
-  color: white;
-  background-color: #34495e;
+  color: black;
+  background-color: white;
   padding: 5px 10px;
   border-radius: 4px;
   display: inline-block;
@@ -55,7 +55,7 @@ h2 {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #34495e;
+  border: 1px solid rgb(75, 75, 75, 0.40);
   border-radius: 4px;
   box-sizing: border-box;
   color: white;
@@ -63,16 +63,17 @@ h2 {
 
 #trackButton {
   width: 100%;
-
-  background-color: #3498db;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
   border-radius: 4px;
+  transition-duration: 0.4s;
   cursor: pointer;
 }
 
 #trackButton:hover {
-  background-color: #2980b9;
+  background-color: #00c97f;
+  color: black;
 }
 
 /* Tracking results display styling */
@@ -81,7 +82,7 @@ h2 {
 }
 
 .tracking-info {
-  background: #34495e;
+  background: rgb(75, 75, 75, 0.40);
   padding: 10px;
   border-radius: 4px;
   margin-bottom: 10px;

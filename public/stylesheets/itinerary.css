@@ -114,8 +114,8 @@ div.vvv{
 }
 
 .button:hover {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #00c97f;
+  color: black;
 }
 
 /* Media query for larger screens */
