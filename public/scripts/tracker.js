@@ -95,26 +95,36 @@ async function fetchAviationStackData(flightIATA, resultsDiv) {
 }
 
 function displayPlaneData(planeData, container) {
+  // Clear previous results
+  container.innerHTML = '';
+
+  // Create the div for displaying the tracking info
+  const div = document.createElement('div');
+  div.className = 'tracking-info';
+
   // Check if the live data is available
-if (planeData.live && planeData.live.latitude !== undefined && planeData.live.longitude !== undefined) {
-    // Create the div for displaying the tracking info
-    const div = document.createElement('div');
-    div.className = 'tracking-info';
-    div.innerHTML = `
-      <p>Flight: ${planeData.flight.iata || 'Unavailable'}</p>
-      <p>Airline: ${planeData.airline.name || 'Unavailable'}</p>
-      <p>Origin: ${planeData.departure.airport || 'Unavailable'}</p>
-      <p>Destination: ${planeData.arrival.airport || 'Unavailable'}</p>
+  if (planeData.live && planeData.live.latitude !== undefined && planeData.live.longitude !== undefined) {
+    div.innerHTML += `
       <p>Latitude: ${planeData.live.latitude.toFixed(2)}</p>
       <p>Longitude: ${planeData.live.longitude.toFixed(2)}</p>
       <p>Altitude: ${planeData.live.altitude || 'Unavailable'} ft</p>
       <p>Heading: ${planeData.live.direction || 'Unavailable'}°</p>
-      <p>Status: ${planeData.flight_status || 'Unavailable'}</p>
     `;
-    container.appendChild(div);
   } else {
-    // If live data is not available, display a relevant message
-    container.textContent = 'Live flight coordinates not available.';
+    // If live data is not available, display the static data
+    div.innerHTML += '<p>Live flight coordinates not available.</p>';
   }
+
+  // Add flight, airline, origin, and destination details that are always available
+  div.innerHTML += `
+    <p>Flight: ${planeData.flight.iata || 'Unavailable'}</p>
+    <p>Airline: ${planeData.airline.name || 'Unavailable'}</p>
+    <p>Origin: ${planeData.departure.airport || 'Unavailable'}</p>
+    <p>Destination: ${planeData.arrival.airport || 'Unavailable'}</p>
+    <p>Status: ${planeData.flight_status || 'Unavailable'}</p>
+  `;
+
+  // Append the new tracking info to the container
+  container.appendChild(div);
 }
 
