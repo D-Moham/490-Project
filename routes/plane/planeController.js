@@ -7,7 +7,7 @@ const AVIATIONSTACK_API_KEY = process.env.AVIATIONSTACK_API_KEY;
 
 // Function to get the flight status given a flight IATA code
 exports.getFlightStatus = async (req, res) => {
-    const { flight_iata } = req.query; // Extract the IATA code from the query parameters
+    const flight_iata = req.params.inputID; // Extract the IATA code from the query parameters
 
     // Setup the parameters for the request to the Aviationstack API
     const params = {
@@ -25,11 +25,21 @@ exports.getFlightStatus = async (req, res) => {
             // Find the flight data matching the IATA code
             const flightData = apiResponse.data.find(flight => flight.flight.iata === flight_iata);
 
-            // If flight data is found, send it as a JSON response
-            if (flightData) {
-                res.json(flightData);
+            // Check if live data is available, and if not, provide available data
+            if (flightData && flightData.live) {
+                res.json(flightData); // If live data is available, send it
+            } else if (flightData) {
+                // If live data isn't available, send available static data
+                const staticData = {
+                    departure: flightData.departure,
+                    arrival: flightData.arrival,
+                    airline: flightData.airline,
+                    flight: flightData.flight,
+                    status: flightData.flight_status
+                };
+                res.json(staticData);
             } else {
-                // If not, send a 404 response
+                // If no flight data is found, send a 404 response
                 res.status(404).json({ message: "Flight not found." });
             }
         } else {
