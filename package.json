@@ -9,7 +9,7 @@
   "author": "TechTravel",
   "license": "ISC",
   "dependencies": {
-    "amtrak": "^3.0.5",
+    "amtrak": "^3.0.11",
     "axios": "^1.8.3",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.9",
